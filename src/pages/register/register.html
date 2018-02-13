@@ -14,5 +14,23 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="First Name" name="first-name" [(ngModel)]="creds.firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Last Name" name="last-name" [(ngModel)]="creds.lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Email" name="email" [(ngModel)]="creds.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Password" name="password" [(ngModel)]="creds.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Phone" name="phone" [(ngModel)]="creds.phone"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <button ion-button block (click)="register()">Register</button>
 </ion-content>
