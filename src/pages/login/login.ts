@@ -4,6 +4,7 @@ import {RegisterPage} from "../register/register";
 import {UserProvider} from "../../providers/user/user";
 import {HomePage} from "../home/home";
 import {AddSkillsPage} from "../add-skills/add-skills";
+import {UtilityProvider} from "../../providers/utility/utility";
 
 /**
  * Generated class for the LoginPage page.
@@ -23,7 +24,7 @@ export class LoginPage {
     password:''
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
   }
 
   ionViewDidLoad() {
@@ -35,9 +36,11 @@ export class LoginPage {
   }
 
   login(){
+    this.util.showLoading(false, "Loggin in...");
     this.userProvider.login(this.creds).subscribe((res)=>{
       if(res["success"] === true){
         this.userProvider.startSession(res);
+        this.util.stopLoading();
         if(!res["user"]["skills"].length){
           this.navCtrl.push(AddSkillsPage);
         }else{
@@ -45,6 +48,7 @@ export class LoginPage {
         }
       }else{
         console.log(JSON.stringify(res));
+        this.util.stopLoading();
       }
 
     });

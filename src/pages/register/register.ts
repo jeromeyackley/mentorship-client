@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {AddSkillsPage} from "../add-skills/add-skills";
 import {HomePage} from "../home/home";
+import {UtilityProvider} from "../../providers/utility/utility";
 
 /**
  * Generated class for the RegisterPage page.
@@ -26,7 +27,7 @@ export class RegisterPage {
     phone: '';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,11 +35,13 @@ export class RegisterPage {
   }
 
   register(creds:any){
+    this.util.showLoading(false, 'Creating account...');
     this.userProvider.register(creds).subscribe((result)=>{
       if(result["success"] === true){
         this.userProvider.login(result["user"]).subscribe((res)=>{
           if(res["success"] === true){
             this.userProvider.startSession(res);
+            this.util.stopLoading();
             if(!res["user"]["skills"].length){
               this.navCtrl.push(AddSkillsPage);
             }else{
@@ -46,6 +49,7 @@ export class RegisterPage {
             }
           }else{
             console.log(JSON.stringify(res));
+            this.util.stopLoading();
           }
         });
       }else{

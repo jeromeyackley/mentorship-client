@@ -11,6 +11,7 @@ import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import { UserProvider } from '../providers/user/user';
 import {AddSkillsPage} from "../pages/add-skills/add-skills";
+import { UtilityProvider } from '../providers/utility/utility';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {AddSkillsPage} from "../pages/add-skills/add-skills";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    UtilityProvider
   ]
 })
 export class AppModule {}
