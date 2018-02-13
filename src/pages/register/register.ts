@@ -15,13 +15,14 @@ import {UserProvider} from "../../providers/user/user";
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  creds = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password:'',
-    phone: ''
-  };
+
+    firstName: '';
+    lastName: '';
+    email: '';
+    password:'';
+    passwordConf:'';
+    phone: '';
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider) {
   }
@@ -30,9 +31,33 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  register(){
-    console.log(JSON.stringify(this.creds));
-    this.userProvider.register(this.creds).subscribe();
+  register(creds:any){
+    console.log(JSON.stringify(creds));
+    this.userProvider.register(creds).subscribe((result)=>{
+
+    }, (err)=>{
+
+    });
   }
+
+  validateForm() {
+    if (this.password !== this.passwordConf) {
+      window.alert('Passwords did not match');
+    }
+
+    //register
+    let creds = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      password: this.password,
+      phone: this.phone
+    }
+
+    this.register(creds);
+
+  }
+
+
 
 }

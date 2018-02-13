@@ -23,6 +23,7 @@ export class UserProvider {
     console.log(this.user);
   }
   register(body){
+    console.log(body)
     return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
 }
