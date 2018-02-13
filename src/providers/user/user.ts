@@ -9,20 +9,18 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class UserProvider {
-  user:undefined;
+  session:undefined;
   constructor(public http: HttpClient) {
-    console.log('Hello UserProvider Provider');
   }
 
   login(body){
    return this.http.post('http://localhost:3000/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
   startSession(user){
-    this.user = user;
-    console.log(this.user);
+    this.session = user;
+    console.log("Starting session with " + JSON.stringify(this.session));
   }
   register(body){
-    console.log(body);
     return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
 }

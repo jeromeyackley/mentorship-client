@@ -36,9 +36,9 @@ export class LoginPage {
 
   login(){
     console.log("loggin in with" + JSON.stringify(this.creds));
-    this.userProvider.login(this.creds).subscribe((user)=>{
-      this.userProvider.startSession(user);
-      if(!user["skills"]){
+    this.userProvider.login(this.creds).subscribe((res)=>{
+      this.userProvider.startSession(res);
+      if(!res["user"]["skills"].length){
         this.navCtrl.push(AddSkillsPage);
       }else{
         this.navCtrl.push(HomePage);
