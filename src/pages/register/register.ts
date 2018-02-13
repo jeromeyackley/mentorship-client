@@ -4,6 +4,7 @@ import {UserProvider} from "../../providers/user/user";
 import {AddSkillsPage} from "../add-skills/add-skills";
 import {HomePage} from "../home/home";
 import {UtilityProvider} from "../../providers/utility/utility";
+import {MentorPromptPage} from "../mentor-prompt/mentor-prompt";
 
 /**
  * Generated class for the RegisterPage page.
@@ -43,9 +44,9 @@ export class RegisterPage {
             this.userProvider.startSession(res);
             this.util.stopLoading();
             if(!res["user"]["skills"].length){
-              this.navCtrl.push(AddSkillsPage);
+              this.navCtrl.push(MentorPromptPage);
             }else{
-              this.navCtrl.push(HomePage);
+              this.navCtrl.setRoot(HomePage);
             }
           }else{
             console.log(JSON.stringify(res));

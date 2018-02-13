@@ -15,7 +15,8 @@ import {UserProvider} from "../../providers/user/user";
   templateUrl: 'add-skills.html',
 })
 export class AddSkillsPage {
-
+  searchString = '';
+  skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle'];
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider) {
   }
 

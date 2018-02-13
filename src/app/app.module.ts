@@ -12,6 +12,7 @@ import {RegisterPage} from "../pages/register/register";
 import { UserProvider } from '../providers/user/user';
 import {AddSkillsPage} from "../pages/add-skills/add-skills";
 import { UtilityProvider } from '../providers/utility/utility';
+import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UtilityProvider } from '../providers/utility/utility';
     HomePage,
     LoginPage,
     RegisterPage,
-    AddSkillsPage
+    AddSkillsPage,
+    MentorPromptPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { UtilityProvider } from '../providers/utility/utility';
     HomePage,
     LoginPage,
     RegisterPage,
-    AddSkillsPage
+    AddSkillsPage,
+    MentorPromptPage
   ],
   providers: [
     StatusBar,
