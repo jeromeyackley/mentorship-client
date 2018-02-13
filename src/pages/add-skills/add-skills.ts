@@ -47,11 +47,22 @@ export class AddSkillsPage {
     let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.skills = this._skills.filter((skill) => {
-        return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+
+    if(this.isSkills){
+      if (val && val.trim() != '') {
+        this.skills = this._skills.filter((skill) => {
+          return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    }else{
+      if (val && val.trim() != '') {
+        this.interests = this._interests.filter((skill) => {
+          return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
     }
+
+
   }
 
   initializeItems() {

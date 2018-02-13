@@ -13,6 +13,7 @@ import { UserProvider } from '../providers/user/user';
 import {AddSkillsPage} from "../pages/add-skills/add-skills";
 import { UtilityProvider } from '../providers/utility/utility';
 import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
+import {UserDetailPage} from "../pages/user-detail/user-detail";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
     LoginPage,
     RegisterPage,
     AddSkillsPage,
-    MentorPromptPage
+    MentorPromptPage,
+    UserDetailPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    UtilityProvider
+    UtilityProvider,
+    UserDetailPage
   ]
 })
 export class AppModule {}
