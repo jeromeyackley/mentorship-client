@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import _ from 'lodash';
+import {HomePage} from "../home/home";
+import {UtilityProvider} from "../../providers/utility/utility";
 
 /**
  * Generated class for the AddSkillsPage page.
@@ -20,12 +22,20 @@ export class AddSkillsPage {
   _skills = [];
   selectedSkills = [];
   searchString = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider) {
+  isSkills = true;
+  interests = [];
+  _interests = [];
+  selectedInterests = [];
+  pageTitle = 'Add Skills';
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddSkillsPage');
     this.getSkills();
+    this.getInterests();
     this.initializeItems();
   }
 
@@ -46,35 +56,62 @@ export class AddSkillsPage {
 
   initializeItems() {
     this.skills = this._skills;
+    this.interests = this._interests;
   }
 
   getSkills(){
     this._skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle', 'cross country napping', 'doing the running man', 'making dumbass remarks'];
   }
 
-  updateSelected(skill){
-    if (_.includes(this.selectedSkills, skill)){
-      _.remove(this.selectedSkills, function(s) {
-        return s == skill;
+  getInterests() {
+    this._interests = ['moon walking2','bull riding2','ice skating2','electric triangle2','cross country napping2','doing the running man2','making dumbass remarks'];
+  }
+
+
+  updateSelected(item){
+    let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
+
+    if (_.includes(array, item)){
+      _.remove(array, function(s) {
+        return s == item;
       });
     }else{
-      this.selectedSkills.push(skill);
+      array.push(item);
     }
     this.searchString = '';
     this.initializeItems();
-    console.log('SELECTED SKILLS: ' + this.selectedSkills);
+    console.log('SELECTED ITEMS: ' + array);
   }
 
-  selectedContainsItem(skill){
-  // return _.includes(this.selectedSkills, skill);
-    return this.selectedSkills.some((s)=>{
-      return s === skill;
+  selectedContainsItem(item){
+    let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
+
+    return array.some((s)=>{
+      return s === item;
     });
   }
 
 
   saveSkills(){
+    this.util.showLoading(false, 'Saving your Skills');
     // updateing of the user
+    setTimeout(()=>{
+      this.isSkills = false;
+      this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+      this.util.stopLoading();
+    }, 2000);
+
   }
 
+  saveInterests(){
+    // updateing of the user
+    this.util.showLoading(false, 'Saving your Interests');
+    // updateing of the user
+    setTimeout(()=>{
+      this.isSkills = false;
+      this.util.stopLoading();
+      this.navCtrl.push(HomePage);
+    }, 2000);
+
+  }
 }
