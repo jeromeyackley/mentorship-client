@@ -35,16 +35,18 @@ export class LoginPage {
   }
 
   login(){
-    console.log("loggin in with" + JSON.stringify(this.creds));
     this.userProvider.login(this.creds).subscribe((res)=>{
-      this.userProvider.startSession(res);
-      if(!res["user"]["skills"].length){
-        this.navCtrl.push(AddSkillsPage);
+      if(res["success"] === true){
+        this.userProvider.startSession(res);
+        if(!res["user"]["skills"].length){
+          this.navCtrl.push(AddSkillsPage);
+        }else{
+          this.navCtrl.push(HomePage);
+        }
       }else{
-        this.navCtrl.push(HomePage);
+        console.log(JSON.stringify(res));
       }
-    }, (err)=>{
-      console.log(err);
+
     });
   }
 

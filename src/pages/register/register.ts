@@ -35,18 +35,23 @@ export class RegisterPage {
 
   register(creds:any){
     this.userProvider.register(creds).subscribe((result)=>{
-      this.userProvider.login(result["user"]).subscribe((res)=>{
-        this.userProvider.startSession(res);
-        if(!res["user"]["skills"].length){
-          this.navCtrl.push(AddSkillsPage);
-        }else{
-          this.navCtrl.push(HomePage);
-        }
-      }, (err)=>{
-        console.log(err);
-      });
-    }, (err)=>{
-      console.log(err);
+      if(result["success"] === true){
+        this.userProvider.login(result["user"]).subscribe((res)=>{
+          if(res["success"] === true){
+            this.userProvider.startSession(res);
+            if(!res["user"]["skills"].length){
+              this.navCtrl.push(AddSkillsPage);
+            }else{
+              this.navCtrl.push(HomePage);
+            }
+          }else{
+            console.log(JSON.stringify(res));
+          }
+        });
+      }else{
+        console.log(JSON.stringify(result));
+      }
+
     });
   }
 
