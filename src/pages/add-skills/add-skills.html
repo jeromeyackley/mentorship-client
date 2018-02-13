@@ -15,10 +15,9 @@
 
 <ion-content padding>
 
+  <ion-searchbar (ionInput)="getSearchResults($event)"></ion-searchbar>
+
   <ion-list>
-    <ion-item>
-      <ion-input placeholder="Search skills" name="search" [(ngModel)]="searchString"></ion-input>
-    </ion-item>
     <ion-item *ngFor="let s of skills">
       <ion-label>{{s}}</ion-label>
     </ion-item>
