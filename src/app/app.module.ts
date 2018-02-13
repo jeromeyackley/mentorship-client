@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import { UserProvider } from '../providers/user/user';
+import {AddSkillsPage} from "../pages/add-skills/add-skills";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AddSkillsPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AddSkillsPage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
+import {AddSkillsPage} from "../add-skills/add-skills";
 
 /**
  * Generated class for the RegisterPage page.
@@ -34,7 +35,10 @@ export class RegisterPage {
   register(creds:any){
     console.log(JSON.stringify(creds));
     this.userProvider.register(creds).subscribe((result)=>{
-
+      this.userProvider.login(result["user"]).subscribe((response)=>{
+        this.userProvider.startSession(response);
+        this.navCtrl.push(AddSkillsPage);
+      })
     }, (err)=>{
 
     });

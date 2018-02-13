@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {RegisterPage} from "../register/register";
 import {UserProvider} from "../../providers/user/user";
+import {HomePage} from "../home/home";
+import {AddSkillsPage} from "../add-skills/add-skills";
 
 /**
  * Generated class for the LoginPage page.
@@ -36,6 +38,11 @@ export class LoginPage {
     console.log("loggin in with" + JSON.stringify(this.creds));
     this.userProvider.login(this.creds).subscribe((user)=>{
       this.userProvider.startSession(user);
+      if(!user["skills"]){
+        this.navCtrl.push(AddSkillsPage);
+      }else{
+        this.navCtrl.push(HomePage);
+      }
     }, (err)=>{
       console.log(err);
     });
