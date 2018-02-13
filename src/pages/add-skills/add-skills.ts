@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
+import _ from 'lodash';
 
 /**
  * Generated class for the AddSkillsPage page.
@@ -17,6 +18,8 @@ import {UserProvider} from "../../providers/user/user";
 export class AddSkillsPage {
   skills = [];
   _skills = [];
+  selectedSkills = [];
+  searchString = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider) {
   }
 
@@ -45,10 +48,33 @@ export class AddSkillsPage {
     this.skills = this._skills;
   }
 
-
   getSkills(){
     this._skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle', 'cross country napping', 'doing the running man', 'making dumbass remarks'];
   }
 
+  updateSelected(skill){
+    if (_.includes(this.selectedSkills, skill)){
+      _.remove(this.selectedSkills, function(s) {
+        return s == skill;
+      });
+    }else{
+      this.selectedSkills.push(skill);
+    }
+    this.searchString = '';
+    this.initializeItems();
+    console.log('SELECTED SKILLS: ' + this.selectedSkills);
+  }
+
+  selectedContainsItem(skill){
+  // return _.includes(this.selectedSkills, skill);
+    return this.selectedSkills.some((s)=>{
+      return s === skill;
+    });
+  }
+
+
+  saveSkills(){
+    // updateing of the user
+  }
 
 }
