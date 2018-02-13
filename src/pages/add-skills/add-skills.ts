@@ -47,7 +47,7 @@ export class AddSkillsPage {
 
 
   getSkills(){
-    this._skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle'];
+    this._skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle', 'cross country napping', 'doing the running man', 'making dumbass remarks'];
   }
 
 
