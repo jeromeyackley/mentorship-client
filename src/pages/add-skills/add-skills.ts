@@ -4,6 +4,7 @@ import {UserProvider} from "../../providers/user/user";
 import _ from 'lodash';
 import {HomePage} from "../home/home";
 import {UtilityProvider} from "../../providers/utility/utility";
+import {SkillProvider} from "../../providers/skill/skill";
 
 /**
  * Generated class for the AddSkillsPage page.
@@ -29,7 +30,7 @@ export class AddSkillsPage {
   pageTitle = 'Add Skills';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider, public skillProvider:SkillProvider) {
     this.checkParams();
   }
 
@@ -129,5 +130,21 @@ export class AddSkillsPage {
     this.isSkills = this.navParams.get("isSkills");
     this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
     console.log('isSkills:' + this.isSkills);
+  }
+
+  addItem(name){
+    // let item = {
+    //   name:name
+    // };
+    let item = name;
+    // add item to db
+    // get skills again
+    this.getSkills();
+    this.getInterests();
+    this._interests.push(item);
+    this._skills.push(item);
+    // update selected
+    this.updateSelected(item);
+
   }
 }

@@ -14,6 +14,7 @@ import {AddSkillsPage} from "../pages/add-skills/add-skills";
 import { UtilityProvider } from '../providers/utility/utility';
 import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
 import {UserDetailPage} from "../pages/user-detail/user-detail";
+import { SkillProvider } from '../providers/skill/skill';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {UserDetailPage} from "../pages/user-detail/user-detail";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     UtilityProvider,
-    UserDetailPage
+    UserDetailPage,
+    SkillProvider
   ]
 })
 export class AppModule {}
