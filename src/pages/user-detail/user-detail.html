@@ -46,7 +46,10 @@
     <ion-row>
       <ion-col>
         <h6>Testimonials:</h6>
-        <p>{{formatTestimonials(this.dummyTestimonials)}}</p>
+        <div *ngFor="let t of formatTestimonials(this.dummyTestimonials)">
+          <p>{{t}}</p>
+        </div>
+        <!--{{formatTestimonials(this.dummyTestimonials).forEach() =>}}-->
       </ion-col>
     </ion-row>
   </ion-grid>

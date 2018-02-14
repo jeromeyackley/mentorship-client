@@ -18,7 +18,7 @@ export class UserDetailPage {
   canEdit:false;
   isEdit:false;
   dummySkills = [{name: 'Ruby'}, {name: 'JavaScript'}, {name: 'Ionic'}]
-  dummyTestimonials = [{giver_id: '1', text:'He was a great mentor! He even brewed coffee for me.'}, {giver_id: '2', text:'He went above and beyond explaining shit for me'}];
+  dummyTestimonials = [{name: 'Jerome Yackley', text:'He was a great mentor! He even brewed coffee for me.'}, {name: 'Kevin Montanez', text:'He went above and beyond explaining shit for me'}];
   pageTitle = 'Profile';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -41,8 +41,8 @@ export class UserDetailPage {
   formatTestimonials(array) {
     let temp = [];
     array.forEach((item)=>{
-      temp.push(item.text)
+      temp.push(`${item.text} -- ${item.name}`)
     });
-    return temp.join(', ')
+    return temp;
   }
 }
