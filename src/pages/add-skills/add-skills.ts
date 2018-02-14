@@ -30,6 +30,7 @@ export class AddSkillsPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider) {
+    this.checkParams();
   }
 
   ionViewDidLoad() {
@@ -102,7 +103,6 @@ export class AddSkillsPage {
     });
   }
 
-
   saveSkills(){
     this.util.showLoading(false, 'Saving your Skills');
     // updateing of the user
@@ -123,6 +123,12 @@ export class AddSkillsPage {
       this.util.stopLoading();
       this.navCtrl.push(HomePage);
     }, 2000);
+  }
 
+  checkParams(){
+    this.isSkills = JSON.parse(this.navParams.get("isSkills"));
+    this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+
+    console.log('isSkills:' + this.isSkills)
   }
 }

@@ -41,7 +41,8 @@ import {UserDetailPage} from "../pages/user-detail/user-detail";
     LoginPage,
     RegisterPage,
     AddSkillsPage,
-    MentorPromptPage
+    MentorPromptPage,
+    UserDetailPage
   ],
   providers: [
     StatusBar,
