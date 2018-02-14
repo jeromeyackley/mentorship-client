@@ -11,6 +11,7 @@ export class HomePage {
 
   users = [];
   _users = [];
+  suggestion = [];
 
   constructor(public navCtrl: NavController, public userProvider:UserProvider) {
 
@@ -47,6 +48,10 @@ export class HomePage {
 
   goToAccountPage(){
     this.navCtrl.push(UserDetailPage, { user: this.userProvider.getUser(), canEdit:true})
+  }
+
+  getSuggestions(){
+
   }
 
 }

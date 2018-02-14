@@ -9,16 +9,20 @@
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row align-items-center justify-content-center padding>
-      <h4 text-center>Are you currently available to mentor?</h4>
-    </ion-row>
-    <ion-row padding>
-      <ion-col>
-        <button ion-button block (click)="stayActive(true)">Sure!</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button block (click)="stayActive(false)">Not now</button>
+  <ion-grid style="height:80%">
+    <ion-row align-items-center justify-content-center style="height:100%">
+      <ion-col align-self-center>
+        <ion-row align-items-center justify-content-center padding>
+          <h4 text-center>Are you currently available to mentor?</h4>
+        </ion-row>
+        <ion-row padding>
+          <ion-col>
+            <button ion-button block (click)="stayActive(true)">Sure!</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button block (click)="stayActive(false)">Not now</button>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
 
