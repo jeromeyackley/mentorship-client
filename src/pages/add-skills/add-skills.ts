@@ -133,18 +133,26 @@ export class AddSkillsPage {
   }
 
   addItem(name){
-    // let item = {
-    //   name:name
-    // };
-    let item = name;
-    // add item to db
-    // get skills again
-    this.getSkills();
-    this.getInterests();
-    this._interests.push(item);
-    this._skills.push(item);
-    // update selected
-    this.updateSelected(item);
+
+
+    this.util.showLoading(false, 'Adding ' + this.searchString);
+    // updateing of the user
+    setTimeout(()=>{
+      // let item = {
+      //   name:name
+      // };
+      let item = name;
+      // add item to db
+      // get skills again
+      this.getSkills();
+      this.getInterests();
+      this._interests.push(item);
+      this._skills.push(item);
+      // update selected
+      this.updateSelected(item);
+      
+      this.util.stopLoading();
+    }, 2000);
 
   }
 }
