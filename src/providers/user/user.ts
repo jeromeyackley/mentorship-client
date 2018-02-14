@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class UserProvider {
-  session:undefined;
+  session:any;
   constructor(public http: HttpClient) {
   }
 
@@ -22,5 +22,9 @@ export class UserProvider {
   }
   register(body){
     return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+  }
+
+  getUser(){
+    return this.session.user;
   }
 }

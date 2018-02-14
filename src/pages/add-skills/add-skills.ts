@@ -126,9 +126,8 @@ export class AddSkillsPage {
   }
 
   checkParams(){
-    this.isSkills = JSON.parse(this.navParams.get("isSkills"));
+    this.isSkills = this.navParams.get("isSkills");
     this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
-
-    console.log('isSkills:' + this.isSkills)
+    console.log('isSkills:' + this.isSkills);
   }
 }

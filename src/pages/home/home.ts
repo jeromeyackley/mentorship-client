@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {UserDetailPage} from "../user-detail/user-detail";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
   users = [];
   _users = [];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public userProvider:UserProvider) {
 
     this.getUsers();
     this.initializeItems();
@@ -41,7 +42,11 @@ export class HomePage {
   }
 
   selectUser(user){
-    this.navCtrl.push(UserDetailPage, {user:user})
+    this.navCtrl.push(UserDetailPage, {user:{first_name:user}, canEdit:false})
+  }
+
+  goToAccountPage(){
+    this.navCtrl.push(UserDetailPage, { user: this.userProvider.getUser(), canEdit:true})
   }
 
 }

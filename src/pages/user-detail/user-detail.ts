@@ -15,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UserDetailPage {
   user:any;
+  canEdit:false;
+  isEdit:false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.user = this.navParams.get("user");
+    this.canEdit = this.navParams.get("canEdit");
+    console.log("canEdit: " + this.canEdit);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserDetailPage');
   }
 
 }
