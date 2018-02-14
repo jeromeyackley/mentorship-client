@@ -61,17 +61,33 @@ export class RegisterPage {
   }
 
   validateForm() {
-    if (this.password !== this.passwordConf) {
+    // if ( this.firstName === "" || this.lastName === "" || this.email === "" || this.phone === "" || this.password === "" || this.passwordConf === "") {
+    if ( [this.firstName, this.lastName, this.email, this.phone, this.password, this.passwordConf].includes(undefined)) {
+      window.alert("All fields are required");
+    } else if ( this.password !== this.passwordConf ){
       window.alert('Passwords did not match');
+    } else if (this.invalidEmail(this.email) ){
+      window.alert('Invalid email');
+    } else if (this.invalidPassword(this.password) ){
+      window.alert('Password has to be at least 8 characters');
+    } else {
+      let creds = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        phone: this.phone
+      };
+      this.register(creds);
     }
-    let creds = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password,
-      phone: this.phone
-    };
-    this.register(creds);
   }
 
+  invalidEmail(email) {;
+    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return !regex.test(email);
+  }
+
+  invalidPassword(password) {
+    return password.length !== 8;
+  }
 }

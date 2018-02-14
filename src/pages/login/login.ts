@@ -37,7 +37,7 @@ export class LoginPage {
   }
 
   login(){
-    this.util.showLoading(false, "Loggin in...");
+    this.util.showLoading(false, "Logging in...");
     this.userProvider.login(this.creds).subscribe((res)=>{
       if(res["success"] === true){
         this.userProvider.startSession(res);
