@@ -51,8 +51,15 @@ export class LoginPage {
         console.log(JSON.stringify(res));
         this.util.stopLoading();
       }
-
     });
+  }
+
+  validateForm() {
+    if ( this.creds.email === "" || this.creds.password === "" ) {
+      window.alert("Email and password are required");
+    } else {
+      this.login();
+    }
   }
 
 }

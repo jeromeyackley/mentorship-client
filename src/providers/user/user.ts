@@ -14,14 +14,14 @@ export class UserProvider {
   }
 
   login(body){
-   return this.http.post('http://localhost:3000/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+   return this.http.post('http://10.119.117.51:3000/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
   startSession(user){
     this.session = user;
     console.log("Starting session with " + JSON.stringify(this.session));
   }
   register(body){
-    return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+    return this.http.post('http://10.119.117.51:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
 
   getUser(){
