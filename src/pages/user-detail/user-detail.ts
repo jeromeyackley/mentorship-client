@@ -15,8 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UserDetailPage {
   user:any;
-  canEdit:false;
-  isEdit:false;
+  canEdit = false;
+  isEdit = false;
+  editClass = '';
   dummySkills = [{name: 'Ruby'}, {name: 'JavaScript'}, {name: 'Ionic'}]
   dummyTestimonials = [{name: 'Jerome Yackley', text:'He was a great mentor! He even brewed coffee for me.'}, {name: 'Kevin Montanez', text:'He went above and beyond explaining shit for me'}];
   pageTitle = 'Profile';
@@ -25,6 +26,7 @@ export class UserDetailPage {
     this.user = this.navParams.get("user");
     this.canEdit = this.navParams.get("canEdit");
     console.log("canEdit: " + this.canEdit);
+    console.log("isEdit: " + this.isEdit);
   }
 
   ionViewDidLoad() {
@@ -44,5 +46,22 @@ export class UserDetailPage {
       temp.push(`${item.text} -- ${item.name}`)
     });
     return temp;
+  }
+  edit(){
+    this.isEdit = true;
+    this.editClass = '_editable';
+    console.log("isEdit: " + this.isEdit);
+  }
+
+  save(){
+    this.isEdit = false;
+    this.editClass = '';
+  }
+
+  editSkills(){
+    console.log('editting skills');
+  }
+  editInterests(){
+    console.log('editting interests');
   }
 }

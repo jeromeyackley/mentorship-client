@@ -1,3 +1,26 @@
+@import '../../theme/variables.scss';
 page-user-detail {
+
+  ion-input{
+    input{
+      margin: 6px 0 !important;
+    }
+    .text-input[disabled] {
+      opacity: 1;
+    }
+  }
+
+  .spacer{
+    margin: 6px 0;
+  }
+
+  ._editable{
+    border-bottom: 2px solid $primary;
+  }
+
+  .editIcon{
+    font-size: 16px;
+  }
+
 
 }

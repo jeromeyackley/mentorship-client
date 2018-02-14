@@ -8,49 +8,67 @@
 
   <ion-navbar color="dark">
     <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end *ngIf="canEdit && !isEdit">
+      <button ion-button icon-only (click)="edit()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-grid>
+  <ion-grid no-padding>
     <ion-row text-center>
-      <ion-col>
+      <ion-col no-padding>
         <img src="assets/imgs/default_avatar.png" alt="avatar" height="120px" width="120px" style="border-radius:60px; opacity: .5;">
-        <p class="display-2 primary">{{user.first_name}} {{user.last_name}}</p>
+        <p class="display-2">{{user.first_name}} {{user.last_name}}</p>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
+    <ion-row class="spacer">
+      <ion-col no-padding>
         <ion-row>
-          <ion-col><span class="display-1">Email:</span><br><span class="body-2 gray">{{user.email}}</span></ion-col>
+          <ion-col no-padding>
+            <span class="body-2">Email:</span><br>
+            <ion-input type="text" name="email" [(ngModel)]="user.email" [ngClass]="editClass" [disabled]="!isEdit" class="body-2 gray">{{user.email}}</ion-input></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><span class="display-1">Phone:</span><br><span class="body-2 gray">{{user.phone}}</span></ion-col>
+          <ion-col no-padding>
+            <span class="body-2">Phone:</span><br>
+            <ion-input type="text" name="phone" [(ngModel)]="user.phone" [ngClass]="editClass" [disabled]="!isEdit" class="body-2 gray">{{user.phone}}</ion-input></ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <span class="display-1">Skills:</span><br>
+    <ion-row class="spacer">
+      <ion-col no-padding>
+        <span class="body-2">Skills:</span><br>
         <span class="body-2 gray">{{formatSkills(this.dummySkills)}}</span>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <span class="display-1">Areas of Interest:</span><br>
-        <span class="body-2 gray">{{formatSkills(this.dummySkills)}}</span>
+      <ion-col col-1 *ngIf="isEdit" align-self-center>
+        <ion-icon name="create" color="primary" class="editIcon" (click)="editSkills()"></ion-icon>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <span class="display-1">Testimonials:</span><br>
+    <ion-row class="spacer">
+      <ion-col no-padding>
+        <span class="body-2">Areas of Interest:</span><br>
+        <span class="body-2 gray">{{formatSkills(this.dummySkills)}}</span>
+      </ion-col>
+      <ion-col col-1 *ngIf="isEdit" align-self-center>
+          <ion-icon name="create" color="primary" class="editIcon" (click)="editInterests()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row class="spacer">
+      <ion-col no-padding>
+        <span class="body-2">Testimonials:</span><br>
         <div *ngFor="let t of formatTestimonials(this.dummyTestimonials)">
           <span class="body-2 gray">{{t}}</span>
         </div>
         <!--{{formatTestimonials(this.dummyTestimonials).forEach() =>}}-->
       </ion-col>
+    </ion-row>
+    <ion-row padding-vertical>
+      <button ion-button block (click)="save()" *ngIf="isEdit" class="save-button">Save</button>
     </ion-row>
   </ion-grid>
 </ion-content>

@@ -28,6 +28,7 @@ export class AddSkillsPage {
   _interests = [];
   selectedInterests = [];
   pageTitle = 'Add Skills';
+  isEdit = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider, public skillProvider:SkillProvider) {

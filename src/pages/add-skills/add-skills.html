@@ -22,7 +22,7 @@
       <ion-label class="body-2 gray">{{s}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(s)"></ion-icon>
     </ion-item>
-    <button ion-button block (click)="saveSkills()" *ngIf="skills.length">Save & Continue</button>
+    <button ion-button block (click)="saveSkills()" *ngIf="skills.length" class="save-button">Save & Continue</button>
 
     <div *ngIf="!skills.length">
       <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>. Would you like to add it?</p>
@@ -36,7 +36,7 @@
       <ion-label class="body-2 gray">{{i}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(i)"></ion-icon>
     </ion-item>
-    <button ion-button block (click)="saveInterests()" *ngIf="interests.length">Save & Continue</button>
+    <button ion-button block (click)="saveInterests()" *ngIf="interests.length" class="save-button">Save & Continue</button>
 
     <div *ngIf="!interests.length">
       <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>. Would you like to add it?</p>
