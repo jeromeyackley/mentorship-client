@@ -27,4 +27,9 @@ export class UserProvider {
   getUser(){
     return this.session.user;
   }
+
+  getUsersBySkill(id){
+    return this.http.get('http://localhost:3000/users/skill/'+id,{headers: new HttpHeaders({"Content-Type":"application/json"})})
+  }
 }
+
