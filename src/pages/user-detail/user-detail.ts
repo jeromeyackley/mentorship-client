@@ -17,6 +17,10 @@ export class UserDetailPage {
   user:any;
   canEdit:false;
   isEdit:false;
+  dummySkills = [{name: 'Ruby'}, {name: 'JavaScript'}, {name: 'Ionic'}]
+  dummyTestimonials = [{giver_id: '1', text:'He was a great mentor! He even brewed coffee for me.'}, {giver_id: '2', text:'He went above and beyond explaining shit for me'}];
+  pageTitle = 'Profile';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.user = this.navParams.get("user");
     this.canEdit = this.navParams.get("canEdit");
@@ -26,4 +30,19 @@ export class UserDetailPage {
   ionViewDidLoad() {
   }
 
+  formatSkills(array) {
+    let temp = [];
+    array.forEach((item)=>{
+      temp.push(item.name)
+    });
+    return temp.join(', ')
+  }
+
+  formatTestimonials(array) {
+    let temp = [];
+    array.forEach((item)=>{
+      temp.push(item.text)
+    });
+    return temp.join(', ')
+  }
 }
