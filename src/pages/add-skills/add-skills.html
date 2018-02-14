@@ -19,7 +19,7 @@
 
   <ion-list *ngIf="isSkills">
     <ion-item *ngFor="let s of skills" (click)="updateSelected(s)">
-      <ion-label class="body-2 gray">{{s}}</ion-label><
+      <ion-label class="body-2 gray">{{s.name}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(s)"></ion-icon>
     </ion-item>
     <button ion-button block (click)="saveSkills()" *ngIf="skills.length" class="save-button">Save & Continue</button>
@@ -33,7 +33,7 @@
 
   <ion-list *ngIf="!isSkills">
     <ion-item *ngFor="let i of interests" (click)="updateSelected(i)">
-      <ion-label class="body-2 gray">{{i}}</ion-label><
+      <ion-label class="body-2 gray">{{i.name}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(i)"></ion-icon>
     </ion-item>
     <button ion-button block (click)="saveInterests()" *ngIf="interests.length" class="save-button">Save & Continue</button>

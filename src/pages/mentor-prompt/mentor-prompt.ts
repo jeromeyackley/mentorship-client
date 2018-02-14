@@ -29,9 +29,9 @@ export class MentorPromptPage {
 
     // go to next view
     if(active){
-      this.navCtrl.push(AddSkillsPage, {isSkills:true});
+      this.navCtrl.push(AddSkillsPage, {isSkills:true, isEdit:false});
     }else{
-      this.navCtrl.push(AddSkillsPage, {isSkills:false});
+      this.navCtrl.push(AddSkillsPage, {isSkills:false, isEdit:false});
     }
   }
 

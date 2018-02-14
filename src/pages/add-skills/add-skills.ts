@@ -33,13 +33,14 @@ export class AddSkillsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider, public skillProvider:SkillProvider) {
     this.checkParams();
+    console.log('ionViewDidLoad AddSkillsPage');
+    this.getAllSkills();
+    this.getAllInterests();
+    this.initializeItems();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddSkillsPage');
-    this.getSkills();
-    this.getInterests();
-    this.initializeItems();
+
   }
 
   getSearchResults(ev: any) {
@@ -54,13 +55,13 @@ export class AddSkillsPage {
     if(this.isSkills){
       if (val && val.trim() != '') {
         this.skills = this._skills.filter((skill) => {
-          return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          return (skill.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
       }
     }else{
       if (val && val.trim() != '') {
-        this.interests = this._interests.filter((skill) => {
-          return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        this.interests = this._interests.filter((interest) => {
+          return (interest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
       }
     }
@@ -73,12 +74,21 @@ export class AddSkillsPage {
     this.interests = this._interests;
   }
 
-  getSkills(){
-    this._skills = ['moon walking', 'bull riding', 'ice skating', 'electric triangle', 'cross country napping', 'doing the running man', 'making dumbass remarks'];
+  getAllSkills(){
+    this.skillProvider.getAll().subscribe((res)=>{
+      this._skills = res["skills"];
+      this.initializeItems();
+
+    })
+
   }
 
-  getInterests() {
-    this._interests = ['moon walking2','bull riding2','ice skating2','electric triangle2','cross country napping2','doing the running man2','making dumbass remarks'];
+  getAllInterests() {
+    this.skillProvider.getAll().subscribe((res)=>{
+      this._interests = res["skills"];
+      this.initializeItems();
+
+    })
   }
 
 
@@ -109,9 +119,16 @@ export class AddSkillsPage {
     this.util.showLoading(false, 'Saving your Skills');
     // updateing of the user
     setTimeout(()=>{
-      this.isSkills = false;
-      this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
-      this.util.stopLoading();
+      if(this.isEdit){
+        this.isSkills = false;
+        this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+        this.util.stopLoading();
+        this.navCtrl.pop();
+      }else{
+        this.isSkills = false;
+        this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+        this.util.stopLoading();
+      }
     }, 2000);
 
   }
@@ -121,15 +138,29 @@ export class AddSkillsPage {
     this.util.showLoading(false, 'Saving your Interests');
     // updateing of the user
     setTimeout(()=>{
-      this.isSkills = false;
-      this.util.stopLoading();
-      this.navCtrl.push(HomePage);
+      if(this.isEdit){
+        this.isSkills = false;
+        this.util.stopLoading();
+        this.navCtrl.pop();
+      }else{
+        this.isSkills = false;
+        this.util.stopLoading();
+        this.navCtrl.setRoot(HomePage);
+      }
     }, 2000);
   }
 
   checkParams(){
     this.isSkills = this.navParams.get("isSkills");
-    this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+    this.pageTitle = this.isSkills ? 'Skills' : 'Interests';
+    this.isEdit = this.navParams.get('isEdit');
+
+    if(this.isEdit){
+      let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
+      array = this.isSkills ? this.userProvider.getUser().skills : this.userProvider.getUser().aoi
+    }else{
+
+    }
     console.log('isSkills:' + this.isSkills);
   }
 
@@ -139,20 +170,22 @@ export class AddSkillsPage {
     this.util.showLoading(false, 'Adding ' + this.searchString);
     // updateing of the user
     setTimeout(()=>{
-      // let item = {
-      //   name:name
-      // };
-      let item = name;
+      let item = {
+        name:name
+      };
       // add item to db
-      // get skills again
-      this.getSkills();
-      this.getInterests();
-      this._interests.push(item);
-      this._skills.push(item);
-      // update selected
-      this.updateSelected(item);
+      this.skillProvider.addItem(item).subscribe(()=>{
+        // get skills again
+        this.getAllSkills();
+        this.getAllInterests();
+        // this._interests.push(item);
+        // this._skills.push(item);
+        // update selected
+        this.updateSelected(item);
 
-      this.util.stopLoading();
+        this.util.stopLoading();
+      });
+
     }, 2000);
 
   }

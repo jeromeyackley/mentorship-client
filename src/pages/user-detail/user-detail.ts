@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AddSkillsPage} from "../add-skills/add-skills";
 
 /**
  * Generated class for the UserDetailPage page.
@@ -32,6 +33,10 @@ export class UserDetailPage {
   ionViewDidLoad() {
   }
 
+  ionViewWillEnter(){
+    this.user = this.navParams.get("user");
+  }
+
   formatSkills(array) {
     let temp = [];
     array.forEach((item)=>{
@@ -60,8 +65,12 @@ export class UserDetailPage {
 
   editSkills(){
     console.log('editting skills');
+    this.navCtrl.push(AddSkillsPage, {isSkills:true, isEdit:true});
+
   }
   editInterests(){
     console.log('editting interests');
+    this.navCtrl.push(AddSkillsPage, {isSkills:false, isEdit:true});
+
   }
 }

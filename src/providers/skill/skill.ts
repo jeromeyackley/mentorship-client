@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -15,7 +15,12 @@ export class SkillProvider {
   }
 
   addItem(item){
-    // add item
+      return this.http.post('http://localhost:3000/skills/add', item, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+    }
+
+  getAll(){
+    return this.http.get('http://localhost:3000/skills')
+
   }
 
 }
