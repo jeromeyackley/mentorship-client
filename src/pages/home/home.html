@@ -16,12 +16,23 @@
 
   <ion-list no-lines no-padding>
       <ion-card *ngFor="let u of users" (click)="selectUser(u)">
-        <ion-card-title no-padding text-center>{{u}}</ion-card-title>
+        <!--<ion-card-title no-padding text-center>{{u}}</ion-card-title>-->
         <ion-card-content>
-          <span>dancing </span><br/>
-          <span>rapping </span><br/>
-          <span>producing </span><br/>
-          <span>directing </span><br/>
+          <ion-row align-items-center>
+            <ion-col col-3>
+              <img src="assets/imgs/default_avatar.png" style="height:50px; width:50px!important;border-radius:25px;opacity: .5">
+            </ion-col>
+            <ion-col col-9 class="display-2">
+              {{u}} Smith
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <!--<span class="body-1 primary">Skills:</span><br>-->
+              <span class="body-2 gray">Dancing, Running, Jumping, Flying</span>
+            </ion-col>
+          </ion-row>
+
         </ion-card-content>
       </ion-card>
     <ion-item></ion-item>

@@ -19,13 +19,13 @@
 
   <ion-list *ngIf="isSkills">
     <ion-item *ngFor="let s of skills" (click)="updateSelected(s)">
-      <ion-label>{{s}}</ion-label><
+      <ion-label class="body-2 gray">{{s}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(s)"></ion-icon>
     </ion-item>
     <button ion-button block (click)="saveSkills()" *ngIf="skills.length">Save & Continue</button>
 
     <div *ngIf="!skills.length">
-      <p>Could not find {{searchString}}. Would you like to add it?</p>
+      <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>. Would you like to add it?</p>
       <button ion-button block (click)="addItem(searchString)">Add</button>
     </div>
   </ion-list>
@@ -33,13 +33,13 @@
 
   <ion-list *ngIf="!isSkills">
     <ion-item *ngFor="let i of interests" (click)="updateSelected(i)">
-      <ion-label>{{i}}</ion-label><
+      <ion-label class="body-2 gray">{{i}}</ion-label><
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(i)"></ion-icon>
     </ion-item>
     <button ion-button block (click)="saveInterests()" *ngIf="interests.length">Save & Continue</button>
 
     <div *ngIf="!interests.length">
-      <p>Could not find {{searchString}}. Would you like to add it?</p>
+      <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>. Would you like to add it?</p>
       <button ion-button block (click)="addItem(searchString)">Add</button>
     </div>
   </ion-list>

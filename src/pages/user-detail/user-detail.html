@@ -17,37 +17,37 @@
   <ion-grid>
     <ion-row text-center>
       <ion-col>
-        <img src="assets/imgs/default_avatar.png" alt="avatar" height="120px" width="120px" style="border-radius:60px">
-        <h2>{{user.first_name}} {{user.last_name}}</h2>
+        <img src="assets/imgs/default_avatar.png" alt="avatar" height="120px" width="120px" style="border-radius:60px; opacity: .5;">
+        <p class="display-2 primary">{{user.first_name}} {{user.last_name}}</p>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-row>
-          <ion-col><span class="contact-info-label">Email:</span><br><span class="contact-info">{{user.email}}</span></ion-col>
+          <ion-col><span class="display-1">Email:</span><br><span class="body-2 gray">{{user.email}}</span></ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><span class="contact-info-label">Phone:</span><br><span class="contact-info">{{user.phone}}</span></ion-col>
+          <ion-col><span class="display-1">Phone:</span><br><span class="body-2 gray">{{user.phone}}</span></ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h6>Skills:</h6>
-        <p>{{formatSkills(this.dummySkills)}}</p>
+        <span class="display-1">Skills:</span><br>
+        <span class="body-2 gray">{{formatSkills(this.dummySkills)}}</span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h6>Areas of Interest:</h6>
-        <p>{{formatSkills(this.dummySkills)}}</p>
+        <span class="display-1">Areas of Interest:</span><br>
+        <span class="body-2 gray">{{formatSkills(this.dummySkills)}}</span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <h6>Testimonials:</h6>
+        <span class="display-1">Testimonials:</span><br>
         <div *ngFor="let t of formatTestimonials(this.dummyTestimonials)">
-          <p>{{t}}</p>
+          <span class="body-2 gray">{{t}}</span>
         </div>
         <!--{{formatTestimonials(this.dummyTestimonials).forEach() =>}}-->
       </ion-col>

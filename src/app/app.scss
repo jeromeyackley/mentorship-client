@@ -1,5 +1,5 @@
 // http://ionicframework.com/docs/theming/
-
+@import "../theme/variables";
 
 // App Global Sass
 // --------------------------------------------------
@@ -17,4 +17,23 @@
 
 .content{
   background-color: #efefef;
+}
+
+.body-1{
+  font-size:14px !important;
+}
+.body-2{
+  font-size:16px !important;
+}
+.display-1{
+  font-size: 18px !important;
+}
+.display-2{
+  font-size: 24px !important;
+}
+.gray{
+  color:gray !important;
+}
+.primary{
+  color:$primary !important;
 }

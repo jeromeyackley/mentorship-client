@@ -150,7 +150,7 @@ export class AddSkillsPage {
       this._skills.push(item);
       // update selected
       this.updateSelected(item);
-      
+
       this.util.stopLoading();
     }, 2000);
 
