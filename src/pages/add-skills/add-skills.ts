@@ -111,7 +111,7 @@ export class AddSkillsPage {
     let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
 
     return array.some((s)=>{
-      return s === item;
+      return s.name === item.name;
     });
   }
 
