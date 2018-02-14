@@ -61,7 +61,6 @@ export class RegisterPage {
   }
 
   validateForm() {
-    // if ( this.firstName === "" || this.lastName === "" || this.email === "" || this.phone === "" || this.password === "" || this.passwordConf === "") {
     if ( [this.firstName, this.lastName, this.email, this.phone, this.password, this.passwordConf].includes(undefined)) {
       window.alert("All fields are required");
     } else if ( this.password !== this.passwordConf ){
