@@ -56,7 +56,7 @@ export class LoginPage {
 
   validateForm() {
     if ( this.creds.email === "" || this.creds.password === "" ) {
-      window.alert("Email and password are required");
+      this.util.showToast('Missing required fields', 2);
     } else {
       this.login();
     }

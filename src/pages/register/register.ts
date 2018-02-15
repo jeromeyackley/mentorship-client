@@ -61,14 +61,14 @@ export class RegisterPage {
   }
 
   validateForm() {
-    if ( [this.firstName, this.lastName, this.email, this.phone, this.password, this.passwordConf].includes(undefined)) {
-      window.alert("All fields are required");
+    if ( [this.firstName, this.lastName, this.email, this.password, this.passwordConf].includes(undefined)) {
+      this.util.showToast('Missing required fields', 2);
     } else if ( this.password !== this.passwordConf ){
-      window.alert('Passwords did not match');
+      this.util.showToast('Password mismatch', 2);
     } else if (this.invalidEmail(this.email) ){
-      window.alert('Invalid email');
+      this.util.showToast('Invalid email', 2);
     } else if (this.invalidPassword(this.password) ){
-      window.alert('Password has to be at least 8 characters');
+      this.util.showToast('Password has to be at least 8 characters', 2);
     } else {
       let creds = {
         firstName: this.firstName,
