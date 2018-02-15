@@ -126,9 +126,9 @@ export class AddSkillsPage {
         user.skills.push(skill._id);
         itemsProcessed++;
         if(itemsProcessed === array.length){
-          this.userProvider.updateUser(user).subscribe((res)=>{
-            this.userProvider.session.user = res["user"];
-          });
+          // this.userProvider.updateUser(user).subscribe((res)=>{
+          //   this.userProvider.session.user = res["user"];
+          // });
         }
       });
 
@@ -159,9 +159,9 @@ export class AddSkillsPage {
         user.aoi.push(interest._id);
         itemsProcessed++;
         if(itemsProcessed === array.length){
-          this.userProvider.updateUser(user).subscribe((res)=>{
-            this.userProvider.session.user = res["user"];
-          });
+          // this.userProvider.updateUser(user).subscribe((res)=>{
+          //   this.userProvider.session.user = res["user"];
+          // });
         }
       });
       //UPDATE MODE & EDIT
