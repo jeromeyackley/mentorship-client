@@ -38,7 +38,7 @@ export class UserProvider {
   }
 
   updateUser(body){
-    return this.http.put('http://localhost:3000/users/' + this.session.user.id, body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+    return this.http.put('http://localhost:3000/users/' + this.session.user._id, body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
   }
 }
 

@@ -122,27 +122,33 @@ export class AddSkillsPage {
       // SAVE SKILL TO USER
       var itemsProcessed = 0;
       let user = this.userProvider.getUser();
+      /// SHOULD CHECK IF PRESENT BEFORE ADDING
       this.selectedSkills.forEach((skill, index, array)=>{
         user.skills.push(skill._id);
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{
+            console.log('res from update' + JSON.stringify(res["user"]));
             this.userProvider.session.user = res["user"];
+            console.log('saving session.user:' + JSON.stringify(res["user"]));
+
+            //UPDATE MODE & EDIT
+            if(this.isEdit){
+              this.isSkills = false;
+              this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+              this.util.stopLoading();
+              this.navCtrl.pop();
+            }else{
+              this.isSkills = false;
+              this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
+              this.util.stopLoading();
+            }
+
           });
         }
       });
 
-      //UPDATE MODE & EDIT
-      if(this.isEdit){
-        this.isSkills = false;
-        this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
-        this.util.stopLoading();
-        this.navCtrl.pop();
-      }else{
-        this.isSkills = false;
-        this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
-        this.util.stopLoading();
-      }
+
     }, 2000);
 
   }
@@ -160,20 +166,25 @@ export class AddSkillsPage {
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{
+            console.log('res from update' + JSON.stringify(res["user"]));
             this.userProvider.session.user = res["user"];
+            console.log('saving session.user:' + JSON.stringify(res["user"]));
+
+            //UPDATE MODE & EDIT
+            if(this.isEdit){
+              this.isSkills = false;
+              this.util.stopLoading();
+              this.navCtrl.pop();
+            }else{
+              this.isSkills = false;
+              this.util.stopLoading();
+              this.navCtrl.setRoot(HomePage);
+            }
+
           });
         }
       });
-      //UPDATE MODE & EDIT
-      if(this.isEdit){
-        this.isSkills = false;
-        this.util.stopLoading();
-        this.navCtrl.pop();
-      }else{
-        this.isSkills = false;
-        this.util.stopLoading();
-        this.navCtrl.setRoot(HomePage);
-      }
+
     }, 2000);
   }
 
