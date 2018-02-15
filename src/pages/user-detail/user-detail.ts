@@ -22,13 +22,20 @@ export class UserDetailPage {
   canEdit = false;
   isEdit = false;
   editClass = '';
+  displayTest = [];
   dummySkills = [{name: 'Ruby'}, {name: 'JavaScript'}, {name: 'Ionic'}];
-  dummyTestimonials = [{name: 'Jerome Yackley', text:'He was a great mentor! He even brewed coffee for me.'}, {name: 'Kevin Montanez', text:'He went above and beyond explaining shit for me'}];
+  dummyTestimonials = [{name: 'Eric Biven', text:'He was a great mentor! He even brewed coffee for me.'},
+    {name: 'Kevin Montanez', text:'He went above and beyond explaining Angular components to me.'},
+    {name: 'Jerome Yackley', text: 'Kevin Montanez has mad skills in web designing. If you have a desire to create a web site, I highly recommend you seek Kevin out as your mentor.' },
+    {name:'Arona Ash', text: 'Chad is a great mentor and he helped me learn Ruby skills very quickly.'     },
+    {name: 'Jyoti Mittal', text: 'Alisher has been an exceptional mentor to me. His willingness to share the Back-end development and NodeJS experiences has been invaluable.' },
+    {name: 'Alisher Sadikov', text: 'As a new employee, I can say without a doubt that I think all new employees should participate in the mentorship program! My mentor introduced me to so many new people and helped me navigate my way through a lot of situations, acquainting me with the MSTS norms!'}];
   pageTitle = 'Profile';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
     this.user = this.navParams.get("user");
     this.canEdit = this.navParams.get("canEdit");
+    this.randomizeTest(this.dummyTestimonials);
     console.log("canEdit: " + this.canEdit);
     console.log("isEdit: " + this.isEdit);
   }
@@ -48,13 +55,19 @@ export class UserDetailPage {
     return temp.join(', ')
   }
 
-  formatTestimonials(array) {
-    let temp = [];
-    array.forEach((item)=>{
-      temp.push(`${item.text} -- ${item.name}`)
-    });
-    return temp;
+  // formatTestimonials() {
+  //   this.displayTest = this.randomizeTest(this.dummyTestimonials);
+  // }
+
+
+  randomizeTest(arr){
+    let test = [];
+    test.push(arr[Math.floor(Math.random() * Math.floor(arr.length))]);
+    test.push(arr[Math.floor(Math.random() * Math.floor(arr.length - 1))]);
+    this.displayTest =  test;
+
   }
+
   edit(){
     this.isEdit = true;
     this.editClass = '_editable';
