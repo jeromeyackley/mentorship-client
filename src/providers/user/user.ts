@@ -32,8 +32,13 @@ export class UserProvider {
   getUser(){
     return this.session.user;
   }
-  getUsersBySkill(id){
-    return this.http.get('http://localhost:3000/users/skill/'+id,{headers: new HttpHeaders({"Content-Type":"application/json"})})
+
+  getUsersBySkill(id) {
+    return this.http.get('http://localhost:3000/users/skill/' + id, {headers: new HttpHeaders({"Content-Type": "application/json"})})
+  }
+
+  updateUser(body){
+    return this.http.put('http://localhost:3000/users/' + this.session.user.id, body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
   }
 }
 
