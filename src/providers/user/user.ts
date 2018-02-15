@@ -16,18 +16,22 @@ export class UserProvider {
   login(body){
    return this.http.post('http://localhost:3000/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
-  startSession(user){
-    this.session = user;
+  startSession(session){
+    this.session = session;
     console.log("Starting session with " + JSON.stringify(this.session));
   }
   register(body){
     return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
 
+  logout(){
+    this.session = null;
+    return Promise.resolve(this.session);
+  }
+
   getUser(){
     return this.session.user;
   }
-
   getUsersBySkill(id){
     return this.http.get('http://localhost:3000/users/skill/'+id,{headers: new HttpHeaders({"Content-Type":"application/json"})})
   }

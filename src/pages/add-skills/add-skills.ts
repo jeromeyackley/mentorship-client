@@ -117,8 +117,22 @@ export class AddSkillsPage {
 
   saveSkills(){
     this.util.showLoading(false, 'Saving your Skills');
-    // updateing of the user
+
     setTimeout(()=>{
+      // SAVE SKILL TO USER
+      var itemsProcessed = 0;
+      let user = this.userProvider.getUser();
+      this.selectedSkills.forEach((skill, index, array)=>{
+        user.skills.push(skill._id);
+        itemsProcessed++;
+        if(itemsProcessed === array.length){
+          this.userProvider.updateUser(user).subscribe((res)=>{
+            this.userProvider.session.user = res["user"];
+          });
+        }
+      });
+
+      //UPDATE MODE & EDIT
       if(this.isEdit){
         this.isSkills = false;
         this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
@@ -138,6 +152,19 @@ export class AddSkillsPage {
     this.util.showLoading(false, 'Saving your Interests');
     // updateing of the user
     setTimeout(()=>{
+      //SAVE SKILL TO USER
+      var itemsProcessed = 0;
+      let user = this.userProvider.getUser();
+      this.selectedInterests.forEach((interest, index, array)=>{
+        user.aoi.push(interest._id);
+        itemsProcessed++;
+        if(itemsProcessed === array.length){
+          this.userProvider.updateUser(user).subscribe((res)=>{
+            this.userProvider.session.user = res["user"];
+          });
+        }
+      });
+      //UPDATE MODE & EDIT
       if(this.isEdit){
         this.isSkills = false;
         this.util.stopLoading();
@@ -174,14 +201,14 @@ export class AddSkillsPage {
         name:name
       };
       // add item to db
-      this.skillProvider.addItem(item).subscribe(()=>{
+      this.skillProvider.addItem(item).subscribe((res)=>{
         // get skills again
         this.getAllSkills();
         this.getAllInterests();
         // this._interests.push(item);
         // this._skills.push(item);
         // update selected
-        this.updateSelected(item);
+        this.updateSelected(res["skill"]);
 
         this.util.stopLoading();
       });
