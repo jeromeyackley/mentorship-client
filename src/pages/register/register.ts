@@ -87,7 +87,8 @@ export class RegisterPage {
   }
 
   invalidPassword(password) {
-    return password.length !== 8;
+    debugger;
+    return password.length <= 8;
   }
 
 
