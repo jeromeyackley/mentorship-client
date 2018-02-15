@@ -15,11 +15,11 @@ export class SkillProvider {
   }
 
   addItem(item){
-      return this.http.post('http://10.119.117.51:3000/skills/add', item, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+      return this.http.post('localhost:5000/skills/add', item, {headers: new HttpHeaders({"Content-Type":"application/json"})})
     }
 
   getAll(){
-    return this.http.get('http://10.119.117.51:3000/skills')
+    return this.http.get('localhost:5000/skills')
 
   }
 }
