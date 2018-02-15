@@ -28,7 +28,11 @@ export class HomePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.users = this._users.filter((user) => {
-        return (user.first_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return user.skills.some((skill, index, array)=>{
+          return skill.toLowerCase().includes(val.toLowerCase());
+          //let i = user.skills.indexOf(skill);
+          //return (user.skills[i].toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
       })
     }
   }
@@ -77,7 +81,7 @@ export class HomePage {
   }
 
   selectUser(user){
-    this.navCtrl.push(UserDetailPage, {user:{first_name:user}, canEdit:false})
+    this.navCtrl.push(UserDetailPage, {user:user, canEdit:false})
   }
 
   goToAccountPage(){

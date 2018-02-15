@@ -85,6 +85,7 @@ export class AddSkillsPage {
 
   getAllInterests() {
     this.skillProvider.getAll().subscribe((res)=>{
+      //skills is the model name this is correct
       this._interests = res["skills"];
       this.initializeItems();
 
@@ -124,7 +125,7 @@ export class AddSkillsPage {
       let user = this.userProvider.getUser();
       /// SHOULD CHECK IF PRESENT BEFORE ADDING
       this.selectedSkills.forEach((skill, index, array)=>{
-        user.skills.push(skill._id);
+        user.skills.push(skill.name);
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{
@@ -162,7 +163,7 @@ export class AddSkillsPage {
       var itemsProcessed = 0;
       let user = this.userProvider.getUser();
       this.selectedInterests.forEach((interest, index, array)=>{
-        user.aoi.push(interest._id);
+        user.aoi.push(interest.name);
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{
