@@ -49,7 +49,7 @@ export class RegisterPage {
               this.navCtrl.setRoot(HomePage);
             }
           }else{
-            console.log(JSON.stringify(res));
+            this.util.showToast(res["message"], 2);
             this.util.stopLoading();
           }
         });
@@ -61,17 +61,34 @@ export class RegisterPage {
   }
 
   validateForm() {
-    if (this.password !== this.passwordConf) {
-      window.alert('Passwords did not match');
+    if ( this.firstName == "" || this.lastName == "" || this.email == "" || this.password == "" || this.passwordConf == "" ) {      this.util.showToast('Missing required fields', 2);
+    } else if (this.password !== this.passwordConf) {
+      this.util.showToast('Password mismatch', 2);
+    } else if (this.invalidEmail(this.email)) {
+      this.util.showToast('Invalid email', 2);
+    } else if (this.invalidPassword(this.password)) {
+      this.util.showToast('Password has to be at least 8 characters', 2);
+    } else {
+      let creds = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        phone: this.phone
+      };
+      this.register(creds);
+
     }
-    let creds = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password,
-      phone: this.phone
-    };
-    this.register(creds);
   }
+
+  invalidEmail(email) {;
+    let regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return !regex.test(email);
+  }
+
+  invalidPassword(password) {
+    return password.length !== 8;
+  }
+
 
 }

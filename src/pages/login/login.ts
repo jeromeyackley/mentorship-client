@@ -48,11 +48,20 @@ export class LoginPage {
           this.navCtrl.setRoot(HomePage);
         }
       }else{
-        console.log(JSON.stringify(res));
+        this.util.showToast(res["message"], 2);
         this.util.stopLoading();
       }
 
     });
+  }
+
+  validateForm(){
+    if ( this.creds.email === "" || this.creds.password === "" ) {
+      this.util.showToast('Missing required fields', 2);
+    } else {
+      this.login();
+    }
+
   }
 
 }

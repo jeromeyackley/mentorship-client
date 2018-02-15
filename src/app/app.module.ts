@@ -15,20 +15,25 @@ import { UtilityProvider } from '../providers/utility/utility';
 import {MentorPromptPage} from "../pages/mentor-prompt/mentor-prompt";
 import {UserDetailPage} from "../pages/user-detail/user-detail";
 import { SkillProvider } from '../providers/skill/skill';
+import {LoginPageModule} from "../pages/login/login.module";
+import {RegisterPageModule} from "../pages/register/register.module";
+import {AddSkillsPageModule} from "../pages/add-skills/add-skills.module";
+import {MentorPromptPageModule} from "../pages/mentor-prompt/mentor-prompt.module";
+import {UserDetailPageModule} from "../pages/user-detail/user-detail.module";
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    LoginPage,
-    RegisterPage,
-    AddSkillsPage,
-    MentorPromptPage,
-    UserDetailPage
+    HomePage
   ],
   imports: [
     BrowserModule,
+    LoginPageModule,
+    RegisterPageModule,
+    AddSkillsPageModule,
+    MentorPromptPageModule,
+    UserDetailPageModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
       preloadModules:false,
