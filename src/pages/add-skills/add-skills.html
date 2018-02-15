@@ -8,9 +8,9 @@
 
   <ion-navbar color="dark" hideBackButton="true">
     <ion-title>{{pageTitle}}</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="goToAccountPage()">
-        <ion-icon name="contact"></ion-icon>
+    <ion-buttons end *ngIf="isEdit">
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

@@ -225,6 +225,10 @@ export class AddSkillsPage {
       });
 
     }, 2000);
-
   }
+
+  close(){
+    this.navCtrl.pop();
+  }
+
 }
