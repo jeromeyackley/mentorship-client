@@ -55,11 +55,6 @@ export class UserDetailPage {
     return temp.join(', ')
   }
 
-  // formatTestimonials() {
-  //   this.displayTest = this.randomizeTest(this.dummyTestimonials);
-  // }
-
-
   randomizeTest(arr){
     let test = [];
     test.push(arr[Math.floor(Math.random() * Math.floor(arr.length))]);
