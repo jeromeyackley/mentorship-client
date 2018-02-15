@@ -8,6 +8,11 @@
 
   <ion-navbar color="dark" hideBackButton="true">
     <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end *ngIf="isEdit">
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -38,7 +43,7 @@
     </ion-item>
     <button ion-button block (click)="saveInterests()" *ngIf="interests.length" class="save-button">Save & Continue</button>
 
-    <div *ngIf="!interests.length">
+    <div *ngIf="!interests.length" padding-vertical>
       <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>. Would you like to add it?</p>
       <button ion-button block (click)="addItem(searchString)">Add</button>
     </div>

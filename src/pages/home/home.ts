@@ -11,12 +11,11 @@ export class HomePage {
 
   users = [];
   _users = [];
-  suggestion = [];
+  suggestions = [];
 
   constructor(public navCtrl: NavController, public userProvider:UserProvider) {
 
     this.getUsers();
-    this.initializeItems();
   }
 
   getSearchResults(ev: any) {
@@ -28,18 +27,53 @@ export class HomePage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.users = this._users.filter((skill) => {
-        return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      this.users = this._users.filter((user) => {
+        return (user.first_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
+
+  // getSearchResults(ev: any) {
+  //   // Reset items back to all of the items
+  //   this.initializeItems();
+  //
+  //   // set val to the value of the searchbar
+  //   let val = ev.target.value;
+  //
+  //   // if the value is an empty string don't filter the items
+  //
+  //   if(this.isSkills){
+  //     if (val && val.trim() != '') {
+  //       this.skills = this._skills.filter((skill) => {
+  //         return (skill.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //       })
+  //     }
+  //   }else{
+  //     if (val && val.trim() != '') {
+  //       this.interests = this._interests.filter((interest) => {
+  //         return (interest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //       })
+  //     }
+  //   }
+  //
+  //
+  // }
 
   initializeItems() {
     this.users = this._users;
   }
 
   getUsers(){
-    this._users = ['Kevin', 'Alisher', 'Jerome', "Eric", "Ro", "Jyoti"];
+    // this._users = ['Kevin', 'Alisher', 'Jerome', "Eric", "Ro", "Jyoti"];
+    this.userProvider.getAllUsers().subscribe((res)=>{
+      if(res["success"] === true){
+        this._users = res["users"];
+        this.initializeItems();
+
+      }else{
+        this._users = [];
+      }
+    })
   }
 
   selectUser(user){
