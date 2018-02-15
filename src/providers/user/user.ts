@@ -14,14 +14,14 @@ export class UserProvider {
   }
 
   login(body){
-   return this.http.post('http://localhost:3000/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+   return this.http.post('https://mentr.msts.com/api/users/auth', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
   startSession(session){
     this.session = session;
     console.log("Starting session with " + JSON.stringify(this.session));
   }
   register(body){
-    return this.http.post('http://localhost:3000/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+    return this.http.post('https://mentr.msts.com/api/users/register', body, {headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
 
   logout(){
@@ -34,14 +34,14 @@ export class UserProvider {
   }
 
   getUsersBySkill(id) {
-    return this.http.get('http://localhost:3000/users/skill/' + id, {headers: new HttpHeaders({"Content-Type": "application/json"})})
+    return this.http.get('https://mentr.msts.com/api/users/skill/' + id, {headers: new HttpHeaders({"Content-Type": "application/json"})})
   }
 
   getAllUsers(){
-    return this.http.get('http://localhost:3000/users/' + this.session.user._id, {headers: new HttpHeaders({"Content-Type": "application/json"})})
+    return this.http.get('https://mentr.msts.com/api/users/' + this.session.user._id, {headers: new HttpHeaders({"Content-Type": "application/json"})})
   }
   updateUser(body){
-    return this.http.put('http://localhost:3000/users/' + this.session.user._id, body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+    return this.http.put('https://mentr.msts.com/api/users/' + this.session.user._id, body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
   }
 }
 

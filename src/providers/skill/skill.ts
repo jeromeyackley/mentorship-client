@@ -15,11 +15,11 @@ export class SkillProvider {
   }
 
   addItem(item){
-      return this.http.post('http://localhost:3000/skills/add', item, {headers: new HttpHeaders({"Content-Type":"application/json"})})
+      return this.http.post('https://mentr.msts.com/api/skills/add', item, {headers: new HttpHeaders({"Content-Type":"application/json"})})
     }
 
   getAll(){
-    return this.http.get('http://localhost:3000/skills')
+    return this.http.get('https://mentr.msts.com/api/skills')
 
   }
 
