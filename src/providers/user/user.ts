@@ -35,5 +35,9 @@ export class UserProvider {
   getUsersBySkill(id){
     return this.http.get('http://localhost:3000/users/skill/'+id,{headers: new HttpHeaders({"Content-Type":"application/json"})})
   }
+
+  updateUser(user){
+    return "I AM A PLACEHOLDER, BUILD ME!";
+  }
 }
 
