@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="getSearchResults($event)"   [(ngModel)]="searchString"></ion-searchbar>
+  <ion-searchbar placeholder="Enter skills to search for mentor" (ionInput)="getSearchResults($event)"   [(ngModel)]="searchString"></ion-searchbar>
 
   <ion-list no-lines no-padding>
       <ion-card *ngFor="let u of users" (click)="selectUser(u)">
