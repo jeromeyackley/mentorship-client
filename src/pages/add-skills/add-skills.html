@@ -20,7 +20,7 @@
 
 <ion-content padding>
 
-  <ion-searchbar (ionInput)="getSearchResults($event)"   [(ngModel)]="searchString"></ion-searchbar>
+  <ion-searchbar (ionInput)="getSearchResults($event)" placeholder="{{placeholder}}"  [(ngModel)]="searchString"></ion-searchbar>
 
   <ion-list *ngIf="isSkills">
     <ion-item *ngFor="let s of skills" (click)="updateSelected(s)">

@@ -29,6 +29,7 @@ export class AddSkillsPage {
   selectedInterests = [];
   pageTitle = 'Add Skills';
   isEdit = false;
+  placeholder = 'What skills can you mentor?';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider, public skillProvider:SkillProvider) {
@@ -174,10 +175,12 @@ export class AddSkillsPage {
             //UPDATE MODE & EDIT
             if(this.isEdit){
               this.isSkills = false;
+              this.placeholder = this.isSkills ? 'What skills can you mentor?' : 'What would you like to learn?';
               this.util.stopLoading();
               this.navCtrl.pop();
             }else{
               this.isSkills = false;
+              this.placeholder = this.isSkills ? 'What skills can you mentor?' : 'What would you like to learn?';
               this.util.stopLoading();
               this.navCtrl.setRoot(HomePage);
             }
@@ -192,6 +195,7 @@ export class AddSkillsPage {
   checkParams(){
     this.isSkills = this.navParams.get("isSkills");
     this.pageTitle = this.isSkills ? 'Skills' : 'Interests';
+    this.placeholder = this.isSkills ? 'What skills can you mentor?' : 'What would you like to learn?';
     this.isEdit = this.navParams.get('isEdit');
 
     if(this.isEdit){
