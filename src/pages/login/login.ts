@@ -48,7 +48,7 @@ export class LoginPage {
           this.navCtrl.setRoot(HomePage);
         }
       }else{
-        console.log(JSON.stringify(res));
+        this.util.showToast(res.message, 2);
         this.util.stopLoading();
       }
     });
