@@ -12,23 +12,23 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar placeholder="Enter skills to search for mentor" (ionInput)="getSearchResults($event)"   [(ngModel)]="searchString"></ion-searchbar>
+  <ion-searchbar placeholder="Search skills to find for mentor" (ionInput)="getSearchResults($event)"   [(ngModel)]="searchString"></ion-searchbar>
 
   <ion-list no-lines no-padding>
       <ion-card *ngFor="let u of users" (click)="selectUser(u)">
-        <ion-card-content>
-          <ion-row align-items-center>
+        <ion-card-content no-padding>
+          <ion-row align-items-center style="padding: 4px 16px;">
             <ion-col col-3>
-              <img src="assets/imgs/{{u.first_name}}.png" class="p-image" style="height:50px; width:50px!important;border-radius:25px;">
+              <img src="assets/imgs/default_avatar.png" class="p-image" style="height:50px; width:50px!important;border-radius:25px;">
             </ion-col>
             <ion-col col-9 class="display-2">
               {{u["first_name"]}} {{u["last_name"]}}
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row padding-horizontal class="user-skill-box">
             <ion-col>
-              <span class="body-1 primary">Skills: </span>
-              <span class="body-1 gray" *ngFor="let s of u.skills"> {{s}}, </span>
+              <!--<span class="body-2">Skills: </span>-->
+              <span class="body-2 gray" *ngFor="let s of u.skills"> {{s}}, </span>
             </ion-col>
           </ion-row>
         </ion-card-content>

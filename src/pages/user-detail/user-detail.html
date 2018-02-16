@@ -46,7 +46,9 @@
         <span class="body-2 gray" *ngFor="let s of user.skills">{{s}} </span>
       </ion-col>
       <ion-col col-1 *ngIf="isEdit" align-self-center>
-        <ion-icon name="create" color="primary" class="editIcon" (click)="editSkills()"></ion-icon>
+        <ion-row align-items-center justify-content-end>
+          <ion-icon name="create" class="editIcon gray" (click)="editSkills()"></ion-icon>
+        </ion-row>
       </ion-col>
     </ion-row>
     <ion-row class="spacer">
@@ -55,7 +57,9 @@
         <span class="body-2 gray" *ngFor="let s of user.aoi">{{s}} </span>
       </ion-col>
       <ion-col col-1 *ngIf="isEdit" align-self-center>
-          <ion-icon name="create" color="primary" class="editIcon" (click)="editInterests()"></ion-icon>
+        <ion-row align-items-center justify-content-end>
+          <ion-icon name="create" class="editIcon gray" (click)="editInterests()"></ion-icon>
+        </ion-row>
       </ion-col>
     </ion-row>
     <!--<ion-row class="spacer">-->

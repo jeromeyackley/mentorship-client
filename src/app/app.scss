@@ -26,6 +26,7 @@
   border: 2px solid gray;
   box-shadow: 5px 5px 5px lightgrey;
   object-fit: cover;
+  opacity: 0.85 !important;
 }
 .body-1{
   font-size:14px !important;
@@ -44,4 +45,7 @@
 }
 .primary{
   color:$primary !important;
+}
+.white{
+  color: whitesmoke !important;
 }

@@ -28,6 +28,7 @@ $list-background-color: #ebebeb;
 $card-md-background-color: white;
 
 $primary: #7b26e1;
+$dark: #222;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -44,7 +45,7 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       $dark
 );
 
 
