@@ -66,8 +66,6 @@ export class AddSkillsPage {
         })
       }
     }
-
-
   }
 
   initializeItems() {
@@ -109,7 +107,7 @@ export class AddSkillsPage {
   selectedContainsItem(item){
     let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
     return array.some((s)=>{
-      return s.name === item.name || s === item.name;
+      return s === item;
     });
   }
 
@@ -120,9 +118,11 @@ export class AddSkillsPage {
       // SAVE SKILL TO USER
       var itemsProcessed = 0;
       let user = this.userProvider.getUser();
+      user.skills = [];
+
       /// SHOULD CHECK IF PRESENT BEFORE ADDING
       this.selectedSkills.forEach((skill, index, array)=>{
-        user.skills.push(skill.name);
+        user.skills.push(skill);
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{
@@ -155,8 +155,9 @@ export class AddSkillsPage {
       //SAVE SKILL TO USER
       var itemsProcessed = 0;
       let user = this.userProvider.getUser();
+      user.aoi = [];
       this.selectedInterests.forEach((interest, index, array)=>{
-        user.aoi.push(interest.name);
+        user.aoi.push(interest);
         itemsProcessed++;
         if(itemsProcessed === array.length){
           this.userProvider.updateUser(user).subscribe((res)=>{

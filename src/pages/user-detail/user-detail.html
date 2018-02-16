@@ -22,7 +22,7 @@
   <ion-grid no-padding>
     <ion-row text-center>
       <ion-col no-padding>
-        <img src="assets/imgs/{{user.first_name}}.png" class="p-image" alt="avatar" height="120px" width="120px" style="border-radius:60px;">
+        <img src="assets/imgs/default_avatar.png" class="p-image" alt="avatar" height="120px" width="120px" style="border-radius:60px;">
         <p class="display-2">{{user.first_name}} {{user.last_name}}</p>
       </ion-col>
     </ion-row>
@@ -43,7 +43,7 @@
     <ion-row class="spacer">
       <ion-col no-padding>
         <span class="body-2">Skills:</span><br>
-        <span class="body-2 gray" *ngFor="let s of user.skills">{{s}},</span>
+        <span class="body-2 gray" *ngFor="let s of user.skills">{{s}} </span>
       </ion-col>
       <ion-col col-1 *ngIf="isEdit" align-self-center>
         <ion-icon name="create" color="primary" class="editIcon" (click)="editSkills()"></ion-icon>
@@ -52,7 +52,7 @@
     <ion-row class="spacer">
       <ion-col no-padding>
         <span class="body-2">Areas of Interest:</span><br>
-        <span class="body-2 gray" *ngFor="let s of user.aoi">{{s}},</span>
+        <span class="body-2 gray" *ngFor="let s of user.aoi">{{s}} </span>
       </ion-col>
       <ion-col col-1 *ngIf="isEdit" align-self-center>
           <ion-icon name="create" color="primary" class="editIcon" (click)="editInterests()"></ion-icon>

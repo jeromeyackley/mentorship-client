@@ -43,7 +43,10 @@ export class UserDetailPage {
   }
 
   ionViewWillEnter(){
-    this.user = this.navParams.get("user");
+    // this.user = this.navParams.get("user");
+    
+    this.user = this.navParams.get("user")._id === this.userProvider.getUser()._id ? this.userProvider.getUser() : this.navParams.get("user");
+
   }
 
   randomizeTest(arr){
