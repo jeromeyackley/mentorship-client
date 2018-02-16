@@ -58,17 +58,17 @@
           <ion-icon name="create" color="primary" class="editIcon" (click)="editInterests()"></ion-icon>
       </ion-col>
     </ion-row>
-    <ion-row class="spacer">
-      <ion-col no-padding>
-        <!--<span class="body-2">Testimonials:</span><br>-->
-        <div *ngFor="let t of displayTest" padding text-center>
-          <span class="body-2 primary">{{t.text}}</span><br>
-          <span class="body-2 primary" padding>{{t.name}}</span>
+    <!--<ion-row class="spacer">-->
+      <!--<ion-col no-padding>-->
+        <!--&lt;!&ndash;<span class="body-2">Testimonials:</span><br>&ndash;&gt;-->
+        <!--<div *ngFor="let t of displayTest" padding text-center>-->
+          <!--<span class="body-2 primary" padding>{{t.text}}</span><br>-->
+          <!--&lt;!&ndash;<span class="body-2 primary" padding>{{t.name}}</span>&ndash;&gt;-->
 
-        </div>
-        <!--{{formatTestimonials(this.dummyTestimonials).forEach() =>}}-->
-      </ion-col>
-    </ion-row>
+        <!--</div>-->
+        <!--&lt;!&ndash;{{formatTestimonials(this.dummyTestimonials).forEach() =>}}&ndash;&gt;-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
     <ion-row padding-vertical *ngIf="isEdit">
       <button ion-button block (click)="save()" class="save-button">Save</button>
     </ion-row>
@@ -77,6 +77,4 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-
 

@@ -23,7 +23,7 @@
   <ion-searchbar (ionInput)="getSearchResults($event)" placeholder="{{placeholder}}"  [(ngModel)]="searchString"></ion-searchbar>
 
   <ion-list *ngIf="isSkills">
-    <ion-item *ngFor="let s of skills" (click)="updateSelected(s)">
+    <ion-item *ngFor="let s of skills" (click)="updateSelected(s.name)">
       <ion-label class="body-2 gray">{{s.name}}</ion-label>
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(s)"></ion-icon>
     </ion-item>
@@ -35,9 +35,8 @@
     </div>
   </ion-list>
 
-
   <ion-list *ngIf="!isSkills">
-    <ion-item *ngFor="let i of interests" (click)="updateSelected(i)">
+    <ion-item *ngFor="let i of interests" (click)="updateSelected(i.name)">
       <ion-label class="body-2 gray">{{i.name}}</ion-label>
       <ion-icon name="checkmark" color="primary" item-end *ngIf="selectedContainsItem(i)"></ion-icon>
     </ion-item>

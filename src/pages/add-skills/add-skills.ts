@@ -79,18 +79,15 @@ export class AddSkillsPage {
     this.skillProvider.getAll().subscribe((res)=>{
       this._skills = res["skills"];
       this.initializeItems();
-
-    })
-
+    });
   }
 
   getAllInterests() {
     this.skillProvider.getAll().subscribe((res)=>{
-      //skills is the model name this is correct
+      //skills is the model name:this is correct.
       this._interests = res["skills"];
       this.initializeItems();
-
-    })
+    });
   }
 
 
@@ -111,9 +108,8 @@ export class AddSkillsPage {
 
   selectedContainsItem(item){
     let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
-
     return array.some((s)=>{
-      return s.name === item.name;
+      return s.name === item.name || s === item.name;
     });
   }
 
@@ -145,14 +141,10 @@ export class AddSkillsPage {
               this.pageTitle = this.isSkills ? 'Add Skills' : 'Add Interests';
               this.util.stopLoading();
             }
-
           });
         }
       });
-
-
     }, 2000);
-
   }
 
   saveInterests(){
@@ -184,11 +176,9 @@ export class AddSkillsPage {
               this.util.stopLoading();
               this.navCtrl.setRoot(HomePage);
             }
-
           });
         }
       });
-
     }, 2000);
   }
 
@@ -199,16 +189,13 @@ export class AddSkillsPage {
     this.isEdit = this.navParams.get('isEdit');
 
     if(this.isEdit){
-      let array = this.isSkills ? this.selectedSkills : this.selectedInterests;
-      array = this.isSkills ? this.userProvider.getUser().skills : this.userProvider.getUser().aoi
-    }else{
-
+      this.selectedSkills = this.userProvider.getUser().skills;
+      this.selectedInterests = this. userProvider.getUser().aoi;
     }
-    console.log('isSkills:' + this.isSkills);
+    console.log(JSON.stringify(this.selectedSkills));
   }
 
   addItem(name){
-
 
     this.util.showLoading(false, 'Adding ' + this.searchString);
     // updateing of the user
@@ -221,14 +208,10 @@ export class AddSkillsPage {
         // get skills again
         this.getAllSkills();
         this.getAllInterests();
-        // this._interests.push(item);
-        // this._skills.push(item);
         // update selected
         this.updateSelected(res["skill"]);
-
         this.util.stopLoading();
       });
-
     }, 2000);
   }
 

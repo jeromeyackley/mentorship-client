@@ -11,10 +11,8 @@ export class HomePage {
 
   users = [];
   _users = [];
-  suggestions = [];
 
   constructor(public navCtrl: NavController, public userProvider:UserProvider) {
-
     this.getUsers();
   }
 
@@ -28,68 +26,35 @@ export class HomePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.users = this._users.filter((user) => {
+        //filter skills of each user
         return user.skills.some((skill, index, array)=>{
           return skill.toLowerCase().includes(val.toLowerCase());
-          //let i = user.skills.indexOf(skill);
-          //return (user.skills[i].toLowerCase().indexOf(val.toLowerCase()) > -1);
-        })
-      })
+        });
+      });
     }
   }
-
-  // getSearchResults(ev: any) {
-  //   // Reset items back to all of the items
-  //   this.initializeItems();
-  //
-  //   // set val to the value of the searchbar
-  //   let val = ev.target.value;
-  //
-  //   // if the value is an empty string don't filter the items
-  //
-  //   if(this.isSkills){
-  //     if (val && val.trim() != '') {
-  //       this.skills = this._skills.filter((skill) => {
-  //         return (skill.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-  //       })
-  //     }
-  //   }else{
-  //     if (val && val.trim() != '') {
-  //       this.interests = this._interests.filter((interest) => {
-  //         return (interest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-  //       })
-  //     }
-  //   }
-  //
-  //
-  // }
 
   initializeItems() {
     this.users = this._users;
   }
 
   getUsers(){
-    // this._users = ['Kevin', 'Alisher', 'Jerome', "Eric", "Ro", "Jyoti"];
     this.userProvider.getAllUsers().subscribe((res)=>{
       if(res["success"] === true){
         this._users = res["users"];
         this.initializeItems();
-
       }else{
         this._users = [];
       }
-    })
+    });
   }
 
   selectUser(user){
-    this.navCtrl.push(UserDetailPage, {user:user, canEdit:false})
+    this.navCtrl.push(UserDetailPage, {user:user, canEdit:false});
   }
 
   goToAccountPage(){
-    this.navCtrl.push(UserDetailPage, { user: this.userProvider.getUser(), canEdit:true})
-  }
-
-  getSuggestions(){
-
+    this.navCtrl.push(UserDetailPage, { user: this.userProvider.getUser(), canEdit:true});
   }
 
 }

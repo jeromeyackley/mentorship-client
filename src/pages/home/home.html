@@ -16,7 +16,6 @@
 
   <ion-list no-lines no-padding>
       <ion-card *ngFor="let u of users" (click)="selectUser(u)">
-        <!--<ion-card-title no-padding text-center>{{u}}</ion-card-title>-->
         <ion-card-content>
           <ion-row align-items-center>
             <ion-col col-3>
@@ -32,7 +31,6 @@
               <span class="body-1 gray" *ngFor="let s of u.skills"> {{s}}, </span>
             </ion-col>
           </ion-row>
-
         </ion-card-content>
       </ion-card>
     <div *ngIf="!users.length" text-center padding>

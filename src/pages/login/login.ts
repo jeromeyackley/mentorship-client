@@ -51,7 +51,6 @@ export class LoginPage {
         this.util.showToast(res["message"], 2);
         this.util.stopLoading();
       }
-
     });
   }
 
@@ -61,7 +60,6 @@ export class LoginPage {
     } else {
       this.login();
     }
-
   }
 
 }

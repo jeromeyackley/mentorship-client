@@ -77,7 +77,6 @@ export class RegisterPage {
         phone: this.phone
       };
       this.register(creds);
-
     }
   }
 
@@ -87,7 +86,6 @@ export class RegisterPage {
   }
 
   invalidPassword(password) {
-    debugger;
     return password.length < 8;
   }
 
