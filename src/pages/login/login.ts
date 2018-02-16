@@ -42,7 +42,7 @@ export class LoginPage {
       if(res["success"] === true){
         this.userProvider.startSession(res);
         this.util.stopLoading();
-        if(!res["user"]["skills"].length){
+        if(!res["user"]["skills"].length && !res["user"]["aoi"].length){
           this.navCtrl.push(MentorPromptPage);
         }else{
           this.navCtrl.setRoot(HomePage);

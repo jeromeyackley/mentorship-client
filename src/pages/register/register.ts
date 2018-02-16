@@ -20,12 +20,12 @@ import {MentorPromptPage} from "../mentor-prompt/mentor-prompt";
 })
 export class RegisterPage {
 
-    firstName: '';
-    lastName: '';
-    email: '';
-    password:'';
-    passwordConf:'';
-    phone: '';
+    firstName =  '';
+    lastName =  '';
+    email =  '';
+    password =  '';
+    passwordConf =  '';
+    phone =  '';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
@@ -43,7 +43,7 @@ export class RegisterPage {
           if(res["success"] === true){
             this.userProvider.startSession(res);
             this.util.stopLoading();
-            if(!res["user"]["skills"].length){
+            if(!res["user"]["skills"].length && !res["user"]["aoi"].length){
               this.navCtrl.push(MentorPromptPage);
             }else{
               this.navCtrl.setRoot(HomePage);
@@ -61,8 +61,7 @@ export class RegisterPage {
   }
 
   validateForm() {
-    if ( this.firstName == "" || this.lastName == "" || this.email == "" || this.password == "" || this.passwordConf == "" ) {      this.util.showToast('Missing required fields', 2);
-    } else if (this.password !== this.passwordConf) {
+    if (this.password !== this.passwordConf) {
       this.util.showToast('Password mismatch', 2);
     } else if (this.invalidEmail(this.email)) {
       this.util.showToast('Invalid email', 2);

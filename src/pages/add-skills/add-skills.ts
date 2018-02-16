@@ -30,7 +30,7 @@ export class AddSkillsPage {
   pageTitle = 'Add Skills';
   isEdit = false;
   placeholder = 'What skills can you mentor?';
-
+  buttonDisabled = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider: UserProvider, public util: UtilityProvider, public skillProvider:SkillProvider) {
     this.checkParams();
@@ -101,7 +101,9 @@ export class AddSkillsPage {
     }
     this.searchString = '';
     this.initializeItems();
+    this.buttonDisabled = !array.length;
     console.log('SELECTED ITEMS: ' + array);
+    console.log('button_disabled: ' + this.buttonDisabled);
   }
 
   selectedContainsItem(item){
@@ -214,6 +216,12 @@ export class AddSkillsPage {
         this.util.stopLoading();
       });
     }, 2000);
+  }
+
+  disableButton(){
+    if(this.isSkills && !this.selectedSkills.length){
+      return true;
+    }else return !this.isSkills && !this.selectedInterests.length;
   }
 
   close(){

@@ -25,16 +25,16 @@
               {{u["first_name"]}} {{u["last_name"]}}
             </ion-col>
           </ion-row>
-          <ion-row padding-horizontal class="user-skill-box">
+          <ion-row padding-horizontal class="user-skill-box" *ngIf="u.skills.length">
             <ion-col>
-              <!--<span class="body-2">Skills: </span>-->
+              <!--<span class="body-2">Expertise: </span>-->
               <span class="body-2 gray" *ngFor="let s of u.skills"> {{s}}, </span>
             </ion-col>
           </ion-row>
         </ion-card-content>
       </ion-card>
     <div *ngIf="!users.length" text-center padding>
-      <p class="body-2 gray">Could not find <span class="display-1 primary">{{searchString}}</span>.</p>
+      <p class="body-2 gray">Could not find anyone available to mentor in <span class="display-1 primary">{{searchString}}</span>.</p>
     </div>
   </ion-list>
 
