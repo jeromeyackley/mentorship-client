@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>register</ion-title>
+    <div style="width:100%;padding-right:48px;text-align: center;">
+      <img src="assets/imgs/mentr_white.png" class="logo-image-small">
+    </div>
   </ion-navbar>
 
 </ion-header>
@@ -34,5 +36,5 @@
     </ion-item>
     <ion-item></ion-item>
   </ion-list>
-  <button ion-button block (click)="validateForm()" [disabled]="!firstName.length || !lastName.length || !email.length || !password.length || !passwordConf.length">Register</button>
+  <button ion-button block (click)="validateForm()">Register</button>
 </ion-content>

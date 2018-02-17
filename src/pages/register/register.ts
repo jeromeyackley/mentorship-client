@@ -61,7 +61,9 @@ export class RegisterPage {
   }
 
   validateForm() {
-    if (this.password !== this.passwordConf) {
+    if (!this.firstName.length || !this.lastName.length || !this.email.length || !this.password.length || !this.passwordConf.length) {
+      this.util.showToast('Missing required fields', 2);
+    } else if (this.password !== this.passwordConf) {
       this.util.showToast('Password mismatch', 2);
     } else if (this.invalidEmail(this.email)) {
       this.util.showToast('Invalid email', 2);

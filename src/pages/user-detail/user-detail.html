@@ -7,9 +7,11 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>{{pageTitle}}</ion-title>
-    <ion-buttons end *ngIf="canEdit && !isEdit">
-      <button ion-button icon-only (click)="edit()">
+    <div style="width:100%;padding-right:16px;text-align: center;">
+      <img src="assets/imgs/mentr_white.png" class="logo-image-small">
+    </div>
+    <ion-buttons end *ngIf="canEdit">
+      <button ion-button icon-only (click)="edit()" [disabled]="isEdit">
         <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
