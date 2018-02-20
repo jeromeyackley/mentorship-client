@@ -20,6 +20,7 @@ import {RegisterPageModule} from "../pages/register/register.module";
 import {AddSkillsPageModule} from "../pages/add-skills/add-skills.module";
 import {MentorPromptPageModule} from "../pages/mentor-prompt/mentor-prompt.module";
 import {UserDetailPageModule} from "../pages/user-detail/user-detail.module";
+import { TestimonialProvider } from '../providers/testimonial/testimonial';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import {UserDetailPageModule} from "../pages/user-detail/user-detail.module";
     UserProvider,
     UtilityProvider,
     UserDetailPage,
-    SkillProvider
+    SkillProvider,
+    TestimonialProvider
   ]
 })
 export class AppModule {}
