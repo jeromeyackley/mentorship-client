@@ -4,6 +4,7 @@ import {AddSkillsPage} from "../add-skills/add-skills";
 import {UserProvider} from "../../providers/user/user";
 import {LoginPage} from "../login/login";
 import {UtilityProvider} from "../../providers/utility/utility";
+import {TestimonialProvider} from "../..providers/testimonial/testimonial"
 
 /**
  * Generated class for the UserDetailPage page.
@@ -22,19 +23,14 @@ export class UserDetailPage {
   canEdit = false;
   isEdit = false;
   editClass = '';
-  displayTest = [];
   pageTitle = 'Profile';
-  dummyTestimonials = [{name: 'Eric Biven', text:'A great mentor! Even brewed coffee for me.'},
-    {name: 'Kevin Montanez', text:'Went above and beyond explaining Angular components to me.'},
-    {name: 'Jerome Yackley', text: 'Mad skills in web designing. If you have a desire to create a web site, I highly recommend you seek him/her out as your mentor.' },
-    {name:'Arona Ash', text: 'The greatest mentor and he helped me learn Ruby skills very quickly.'     },
-    {name: 'Jyoti Mittal', text: 'Has been an exceptional mentor to me. Willingness to share the Back-end development and NodeJS experiences has been invaluable.' },
-    {name: 'Alisher Sadikov', text: 'As a new employee, I can say without a doubt that I think all new employees should participate in the mentorship program! My mentor introduced me to so many new people and helped me navigate my way through a lot of situations, acquainting me with the MSTS norms!'}];
+  newTestimonial = '';
+  testimonials = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider, public testimonialProvider: TestimonialProvider) {
     this.user = this.navParams.get("user");
     this.canEdit = this.navParams.get("canEdit");
-    this.randomizeTest(this.dummyTestimonials);
+    this.getTestimonials();
     console.log("canEdit: " + this.canEdit);
     console.log("isEdit: " + this.isEdit);
   }
@@ -43,17 +39,7 @@ export class UserDetailPage {
   }
 
   ionViewWillEnter(){
-    // this.user = this.navParams.get("user");
-
     this.user = this.navParams.get("user")._id === this.userProvider.getUser()._id ? this.userProvider.getUser() : this.navParams.get("user");
-
-  }
-
-  randomizeTest(arr){
-    let test = [];
-    // test.push(arr[Math.floor(Math.random() * Math.floor(arr.length))]);
-    test.push(arr[Math.floor(Math.random() * Math.floor(arr.length - 1))]);
-    this.displayTest =  test;
   }
 
   edit(){
@@ -90,5 +76,32 @@ export class UserDetailPage {
         }
       })
     }, 2000);
+  }
+
+  addTestimonial(){
+    this.util.showLoading(false, 'Adding testimonial...');
+    let body = {
+      receiver_id: this.user._id,
+      from: `${this.userProvider.session.user.first_name} ${this.userProvider.session.user.last_name}`,
+      text: this.newTestimonial
+    }
+    this.testimonialProvider.addTestimonial(JSON.stringify(body)).subscribe((result)=>{
+      if(result["success"] === true){
+        this.testimonials.push(body);
+        this.util.stopLoading();
+      }else{
+        console.log(JSON.stringify(result));
+      }
+    });
+  }
+
+  getTestimonials() {
+    this.testimonialProvider.getTestimonialsForUser(this.user._id).subscribe((result)=>{
+      if(result["success"] === true){
+        this.testimonials = result["testimonials"];
+      } else{
+        console.log(JSON.stringify(result));
+      }
+    });
   }
 }

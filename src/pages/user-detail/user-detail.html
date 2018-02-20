@@ -67,23 +67,32 @@
         </ion-row>
       </ion-col>
     </ion-row>
-    <!--<ion-row class="spacer">-->
-      <!--<ion-col no-padding>-->
-        <!--&lt;!&ndash;<span class="body-2">Testimonials:</span><br>&ndash;&gt;-->
-        <!--<div *ngFor="let t of displayTest" padding text-center>-->
-          <!--<span class="body-2 primary" padding>{{t.text}}</span><br>-->
-          <!--&lt;!&ndash;<span class="body-2 primary" padding>{{t.name}}</span>&ndash;&gt;-->
-
-        <!--</div>-->
-        <!--&lt;!&ndash;{{formatTestimonials(this.dummyTestimonials).forEach() =>}}&ndash;&gt;-->
-      <!--</ion-col>-->
-    <!--</ion-row>-->
+    <ion-row class="spacer">
+      <ion-col no-padding>
+        <span class="body-2">Testimonials:</span><br>
+        <div *ngFor="let t of testimonials" padding text-center>
+          <span class="body-2 primary" padding>"{{t.text}}"</span><br>
+          <span class="body-2 primary" padding>-- {{t.from}}</span>
+        </div>
+      </ion-col>
+    </ion-row>
     <ion-row padding-vertical *ngIf="isEdit">
       <button ion-button block (click)="save()">Save</button>
+    </ion-row>
+    <ion-row>
+      <ion-col no-padding>
+        <ion-list>
+          <ion-item>
+            <ion-input placeholder="Add a testimonial.." type="text" name="add-testimonial" id="testimonial" [(ngModel)]="newTestimonial" clearInput></ion-input>
+          </ion-item>
+          <ion-item>
+            <button ion-button block (click)="addTestimonial()">Add</button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
     </ion-row>
     <ion-row padding-vertical *ngIf="canEdit && !isEdit">
       <button ion-button clear block (click)="logout()">Log Out</button>
     </ion-row>
   </ion-grid>
 </ion-content>
-
