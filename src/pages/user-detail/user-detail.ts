@@ -24,6 +24,8 @@ export class UserDetailPage {
   editClass = '';
   displayTest = [];
   pageTitle = 'Profile';
+  newTestimonial = '';
+  testimonials = [];
   dummyTestimonials = [{name: 'Eric Biven', text:'A great mentor! Even brewed coffee for me.'},
     {name: 'Kevin Montanez', text:'Went above and beyond explaining Angular components to me.'},
     {name: 'Jerome Yackley', text: 'Mad skills in web designing. If you have a desire to create a web site, I highly recommend you seek him/her out as your mentor.' },
@@ -34,7 +36,7 @@ export class UserDetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public userProvider:UserProvider, public util:UtilityProvider) {
     this.user = this.navParams.get("user");
     this.canEdit = this.navParams.get("canEdit");
-    this.randomizeTest(this.dummyTestimonials);
+    this.getTestimonials();
     console.log("canEdit: " + this.canEdit);
     console.log("isEdit: " + this.isEdit);
   }
@@ -54,6 +56,16 @@ export class UserDetailPage {
     // test.push(arr[Math.floor(Math.random() * Math.floor(arr.length))]);
     test.push(arr[Math.floor(Math.random() * Math.floor(arr.length - 1))]);
     this.displayTest =  test;
+  }
+
+  getTestimonials() {
+    this.userProvider.getTestimonialsForUser(this.user._id).subscribe((result)=>{
+      if(result["success"] === true){
+        this.testimonials = result["testimonials"];
+      } else{
+        console.log(JSON.stringify(result));
+      }
+    });
   }
 
   edit(){
@@ -90,5 +102,22 @@ export class UserDetailPage {
         }
       })
     }, 2000);
+  }
+
+  addTestimonial(){
+    this.util.showLoading(false, 'Adding testimonial...');
+    let body = {
+      receiver_id: this.user._id,
+      from: `${this.userProvider.session.user.first_name} ${this.userProvider.session.user.last_name}`,
+      text: this.newTestimonial
+    }
+    this.userProvider.addTestimonial(JSON.stringify(body)).subscribe((result)=>{
+      if(result["success"] === true){
+        this.testimonials.push(body);
+        this.util.stopLoading();
+      }else{
+        console.log(JSON.stringify(result));
+      }
+    });
   }
 }
