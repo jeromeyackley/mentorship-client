@@ -15,10 +15,10 @@ export class TestimonialProvider {
   }
 
   addTestimonial(body) {
-    return this.http.post('http://localhost:3000/testimonials', body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+    return this.http.post('https://mentr.msts.com/api', body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
   }
 
   getTestimonialsForUser(user_id) {
-    return this.http.get('http://localhost:3000/testimonials/for_user/' + user_id, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+    return this.http.get('https://mentr.msts.com/api/for_user/' + user_id, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
   }
 }
