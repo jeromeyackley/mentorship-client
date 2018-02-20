@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -9,16 +9,15 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class TestimonialProvider {
-
   constructor(public http: HttpClient) {
     console.log('Hello TestimonialProvider Provider');
   }
 
-  addTestimonial(body) {
-    return this.http.post('https://mentr.msts.com/api', body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+  addTestimonial(body, sessionToken) {
+    return this.http.post('https://mentr.msts.com/api', body, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":sessionToken})})
   }
 
-  getTestimonialsForUser(user_id) {
-    return this.http.get('https://mentr.msts.com/api/for_user/' + user_id, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":this.session.token})})
+  getTestimonialsForUser(user_id, sessionToken) {
+    return this.http.get('https://mentr.msts.com/api/for_user/' + user_id, {headers: new HttpHeaders({"Content-Type":"application/json", "Authorization":sessionToken})})
   }
 }

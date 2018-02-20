@@ -4,7 +4,7 @@ import {AddSkillsPage} from "../add-skills/add-skills";
 import {UserProvider} from "../../providers/user/user";
 import {LoginPage} from "../login/login";
 import {UtilityProvider} from "../../providers/utility/utility";
-import {TestimonialProvider} from "../..providers/testimonial/testimonial"
+import {TestimonialProvider} from "../../providers/testimonial/testimonial"
 
 /**
  * Generated class for the UserDetailPage page.
@@ -85,7 +85,7 @@ export class UserDetailPage {
       from: `${this.userProvider.session.user.first_name} ${this.userProvider.session.user.last_name}`,
       text: this.newTestimonial
     }
-    this.testimonialProvider.addTestimonial(JSON.stringify(body)).subscribe((result)=>{
+    this.testimonialProvider.addTestimonial(JSON.stringify(body), this.userProvider.session.token).subscribe((result)=>{
       if(result["success"] === true){
         this.testimonials.push(body);
         this.util.stopLoading();
@@ -96,7 +96,7 @@ export class UserDetailPage {
   }
 
   getTestimonials() {
-    this.testimonialProvider.getTestimonialsForUser(this.user._id).subscribe((result)=>{
+    this.testimonialProvider.getTestimonialsForUser(this.user._id, this.userProvider.session.token).subscribe((result)=>{
       if(result["success"] === true){
         this.testimonials = result["testimonials"];
       } else{
